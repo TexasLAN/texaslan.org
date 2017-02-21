@@ -1,0 +1,208 @@
+{% extends "users/base.html" %}
+{% load static %}{% load i18n %}
+{% block title %}Members{% endblock %}
+
+{% block css %}
+    <link href="{% static 'generated_css/sortable_base.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra-js %}
+    <script src="{% static 'js/bootstrap-sortable.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs nav-justified" role="tablist">
+                    <li role="presentation">
+                        <a href="#disabled" aria-controls="profile" role="tab" data-toggle="tab">
+                            Disabled
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#open_rushie" aria-controls="profile" role="tab" data-toggle="tab">
+                            Open Rushie
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#closed_rushie" aria-controls="profile" role="tab" data-toggle="tab">
+                            Close Rushie
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#pledge" aria-controls="profile" role="tab" data-toggle="tab">
+                            Pledge
+                        </a>
+                    </li>
+                    <li role="presentation" class="active">
+                        <a href="#member" aria-controls="home" role="tab" data-toggle="tab">
+                            Actives
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#officer" aria-controls="profile" role="tab" data-toggle="tab">
+                            Officer
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#inactive" aria-controls="profile" role="tab" data-toggle="tab">
+                            Inactive
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#alumni" aria-controls="profile" role="tab" data-toggle="tab">
+                            Alumni
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane" id="disabled">
+                    <table class="table table-bordered table-striped sortable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        {% for user in user_list %}
+                            {% if user.is_disabled %}
+                                <tr>
+                                    <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="open_rushie">
+                    <table class="table table-bordered table-striped sortable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        {% for user in user_list %}
+                            {% if user.is_open_rushie %}
+                                <tr>
+                                    <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="closed_rushie">
+                    <table class="table table-bordered table-striped sortable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        {% for user in user_list %}
+                            {% if user.is_closed_rushie %}
+                                <tr>
+                                    <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="pledge">
+                    <table class="table table-bordered table-striped sortable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        {% for user in user_list %}
+                            {% if user.is_pledge %}
+                                <tr>
+                                    <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane active" id="member">
+                    <table class="table table-bordered table-striped sortable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        {% for user in user_list %}
+                            {% if user.is_active_user %}
+                                <tr>
+                                    <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="officer">
+                    <table class="table table-bordered table-striped sortable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        {% for user in user_list %}
+                            {% if user.is_officer %}
+                                <tr>
+                                    <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="inactive">
+                    <table class="table table-bordered table-striped sortable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        {% for user in user_list %}
+                            {% if user.is_inactive %}
+                                <tr>
+                                    <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="alumni">
+                    <table class="table table-bordered table-striped sortable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        {% for user in user_list %}
+                            {% if user.is_alumni %}
+                                <tr>
+                                    <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

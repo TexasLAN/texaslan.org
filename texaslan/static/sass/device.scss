@@ -1,0 +1,167 @@
+@charset "utf-8";
+
+/* ----- DEMO -------------------- */
+
+.demo {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+}
+
+.demo .device {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.demo .device .screen {
+  position: absolute;
+  border-radius: 5px;
+  padding: 3px;
+  background: black;
+}
+
+/* Camera */
+.demo .device:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  border-radius: 5px;
+}
+
+/* Home button */
+.demo .device:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  border: 1px solid transparent;
+  transform: scale(1.02, 1.02);
+}
+
+.demo .device {
+  background: #333;
+}
+
+.demo .device:before {
+  background: #555;
+}
+
+.demo .device:after {
+  border-color: #555;
+}
+
+/*--- = White  */
+
+.demo .device.white {
+  background: rgb(241, 244, 249);
+}
+
+.demo .device.white:before {
+  background: #bbbbbb;
+}
+
+.demo .device.white:after {
+  border-color: #cccccc;
+}
+
+/* iPhone */
+
+.demo.iphone {
+  height: 570px;
+}
+
+.demo.iphone .device {
+  transform: translateX(-50%) translateY(-50%) scale(0.75);
+}
+
+.demo.iphone .device {
+  width: 290px; /* 4.477x the mm measurement, - 10 pixels for the curved edges */
+  height: 608px;
+  border-radius: 44px;
+}
+
+.demo.iphone .device .screen {
+  left: 13px;
+  top: 76px;
+  width: 260px;
+  height: 460px;
+}
+
+/* Camera */
+.demo.iphone .device:before {
+  left: 126px;
+  top: 37px;
+  width: 48px;
+  height: 4px;
+}
+
+/* Home button */
+.demo.iphone .device:after {
+  left: 127px;
+  top: 551px;
+  width: 44px;
+  height: 44px;
+  border-radius: 23px;
+}
+
+/*--- = Android Device  */
+.demo.android {
+  height: 570px;
+}
+
+.demo.android .device {
+  transform: translateX(-50%) translateY(-50%) scale(0.75);
+}
+
+.demo.android .device {
+  width: 290px; /* 4.477x the mm measurement, - 10 pixels for the curved edges */
+  height: 580px;
+  border-radius: 44px /30px;
+}
+
+.demo.android .device .screen {
+  left: 13px;
+  top: 56px;
+  width: 260px;
+  height: 460px;
+}
+
+/* Camera */
+.demo.android .device:before {
+  left: 120px;
+  top: 25px;
+  width: 60px;
+  height: 4px;
+}
+
+/* Home button */
+.demo.android .device:after {
+  left: 115px;
+  top: 538px;
+  width: 60px;
+  height: 22px;
+  border-radius: 23px;
+}
+
+/*!----- Wider than 540px -------------------- */
+
+@media screen and (min-width: 540px) {
+  /* ----- DEMO -------------------- */
+
+  .demo.iphone {
+    height: 620px;
+  }
+
+  .demo.android {
+    height: 620px;
+  }
+
+  .demo.iphone .device {
+    transform: translateX(-50%) translateY(-50%) scale(1);
+  }
+
+  .demo.android .device {
+    transform: translateX(-50%) translateY(-50%) scale(1);
+  }
+
+}

@@ -1,0 +1,37 @@
+{% extends "go/base.html" %}
+{% load static %}{% load i18n %}
+{% block title %}Members{% endblock %}
+
+{% block css %}
+    <link href="{% static 'generated_css/sortable_base.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra-js %}
+    <script src="{% static 'js/bootstrap-sortable.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Go Links</h1>
+            </div>
+            <div class="tab-content">
+                <table class="table table-bordered table-striped sortable">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>URL</th>
+                    </tr>
+                    </thead>
+                    {% for go in go_list %}
+                        <tr>
+                            <td>{{ go.id }}</td>
+                            <td><a href="{% url 'go:go' go.id %}">{{ go.url }}</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

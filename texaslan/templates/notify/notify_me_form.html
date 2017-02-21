@@ -1,0 +1,67 @@
+{% extends "notify/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Notify Me{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Subscribe to Rush Form</h1>
+            </div>
+            <div class="panel-body">
+                <form id="rush-form" action="" method="POST" target="no-target">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="major">Major</label>
+                        <input type="text" class="form-control" id="major" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="gradYear">Expected Graduation Year</label>
+                        <input class="form-control" type="text" id="gradYear" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input class="form-control" type="text" id="phoneNumber" placeholder="">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            $("#rush-form").on('submit', function () {
+                //Get values of each field on the form
+                var firstName = encodeURIComponent($('#firstName').val());
+                var lastName = encodeURIComponent($('#lastName').val());
+                var email = encodeURIComponent($('#email').val());
+                var major = encodeURIComponent($('#major').val());
+                var gradYear = encodeURIComponent($('#gradYear').val());
+                var phoneNumber = encodeURIComponent($('#phoneNumber').val());
+                //Static IDs of the form elements in Google Forms, used to build POST URL
+                //This is a good guide on obtaining the values used for this form: https://github.com/heaversm/google-custom-form
+                var fnID = "entry.1272715718";
+                var lnID = "entry.1440594361";
+                var emID = "entry.1969544381";
+                var mjID = "entry.496815345";
+                var gdID = "entry.474555666";
+                var phID = "entry.1933292045";
+                var baseURL = 'https://docs.google.com/forms/d/e/1FAIpQLScyDfY5xFivQMinY4BIAvPK0Gu6kChhYQIWkX8PBOZk2G801A/formResponse?';
+                var submitRef = '&submit=Submit';
+                var submitURL = (baseURL + fnID + "=" + firstName + "&" + lnID + "=" + lastName + "&" + mjID
+                + "=" + major + "&" + gdID + "=" + gradYear + "&" + emID + "=" + email
+                + "&" + phID + "=" + phoneNumber + submitRef);
+                $(this)[0].action = submitURL;
+            })
+        </script>
+    </div>
+{% endblock %}

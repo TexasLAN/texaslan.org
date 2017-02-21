@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} UTCS Lab Status || MAD {% endblock title %}
+
+{% block css %}
+    <link href="{% static 'generated_css/labstatus/labstatus.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra-js %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/js/jquery.tooltipster.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+
+    <script src="{% static 'generated_js/labstatus/rendering.min.js' %}"></script>
+    <script src="{% static 'generated_js/labstatus/search.min.js' %}"></script>
+    <script>
+        window.addEventListener("load", function () {
+
+            const spaceTipTemplate = _.template(
+                $("script#tooltipTemplate").html()
+            );
+            const monitorTipTemplate = _.template(
+                $("script#monitorTooltipTemplate").html()
+            );
+            const searchField = document.getElementById("search-input");
+            var machines;
+            let spaces = document.getElementsByClassName("space");
+            for (let i = 0; i < spaces.length; i++) {
+                const element = spaces[i];
+                const data = element.dataset;
+                element.style.left = data.xPercent * 100.0 + "%";
+                element.style.top = data.yPercent * 100.0 + "%";
+                element.className = element.className.replace("to-be-rendered", "");
+            }
+            renderTooltips(spaces, spaceTipTemplate, monitorTipTemplate);
+            searchField.addEventListener("input", function (e) {
+                const text = searchField.value;
+                if (!machines || machines.length > 0) {
+                    machines = $(".machine")
+                }
+                filterMachines(machines, text)
+            });
+            document.addEventListener("keypress", function (e) {
+                searchField.focus()
+            });
+        });
+
+
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div id="sub-nav">
+        <div class="svg-icon" id="search-icon"></div>
+        <input type="search" placeholder="machine name" id="search-input"/>
+        <div class="svg-icon" id="help-icon" style="display: none;"></div>
+        <a href="{% url 'labs' %}">
+            <div class="svg-icon mad-labs-logo"></div>
+        </a>
+    </div>
+    <section id="labs">
+        {% for lab in labs %}
+            {% if forloop.first %}
+                <div id="third-floor" class="lab">
+            {% else %}
+                <div id="basement" class="lab">
+            {% endif %}
+        <div class="container">
+            {% if forloop.first %}
+                <h1>Third Floor</h1>
+            {% else %}
+                <h1>Basement</h1>
+            {% endif %}
+
+            <div class="machines-container">
+                <div class="machines">
+                    {% for machine in lab %}
+                        {% if machine.is_monitor %}
+                            <div class="space monitor to-be-rendered" data-name="{{ machine.name }}"
+                                 data-x-percent="{{ machine.location.0 }}"
+                                 data-y-percent="{{ machine.location.1 }}"
+                            ></div>
+                        {% else %}
+                            <div class="space machine to-be-rendered" data-name="{{ machine.name }}"
+                                 data-occupied="{{ machine.occupied | lower }}" data-users="{{ machine.users }}"
+                                 data-up="{{ machine.up | lower }}" data-uptime="{{ machine.uptime }}"
+                                 data-load="{{ machine.load }}"
+                                 data-x-percent="{{ machine.location.0 }}" data-y-percent="{{ machine.location.1 }}"
+
+                            >
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+    </section>
+
+
+
+    <script type="text/template" id="tooltipTemplate">
+        <h3><%= data.name %></h3>
+        <span> <%= Math.floor(data.uptime / (24 * 60)) %>:<%= Math.floor((data.uptime / 60) % 24) %>:<%= data.uptime % 60 %> </span>
+    </script>
+    <script type="text/template" id="monitorTooltipTemplate">
+        <h3><%= data.name %></h3>
+    </script>
+{% endblock %}

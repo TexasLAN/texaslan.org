@@ -1,0 +1,208 @@
+@import "../base";
+
+/* = Sections
+-------------------------------------------------------------- */
+
+section h1 {
+  text-align: center;
+}
+
+/* = Layout
+-------------------------------------------------------------- */
+/* Top level page structure*/
+
+#labs {
+  flex: 1 1 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: flex;
+}
+
+#sub-nav {
+  margin-top: 4px;
+  padding: 0 12px;
+}
+
+#sub-nav a {
+  display: inline-block;
+  float: right;
+}
+
+/* = Labs
+-------------------------------------------------------------- */
+
+#labs {
+  flex-flow: row wrap;
+  position: relative;
+  font-size: 0;
+  width: 100%;
+}
+
+.lab {
+  display: flex;
+  flex: 1 0 auto;
+  width: 100%;
+  flex-direction: column;
+}
+
+.lab .container {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+  max-width: 500px;
+  min-height: 450px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.lab h1 {
+  flex: 0 0 auto;
+}
+
+.machines-container {
+  padding-right: 14px;
+  flex: 9 0 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.machines {
+  max-height: 100%;
+  max-width: 300px;
+  width: 100%;
+  position: relative;
+  align-self: center;
+  flex: 1 1 80%;
+}
+
+/* = Machine
+-------------------------------------------------------------- */
+
+.space {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  transition: opacity 0.5s;
+  opacity: 1;
+}
+
+.machine[data-occupied="true"] {
+  background-color: red;
+}
+
+.machine[data-occupied="false"] {
+  background-color: green;
+}
+
+.to-be-rendered {
+  opacity: 0;
+}
+
+.svg-icon {
+  width: 1em;
+  height: 1em;
+}
+
+/* = Search
+-------------------------------------------------------------- */
+
+#search-icon {
+  display: inline-block;
+  flex: 0 1 0;
+  margin-right: 4px;
+}
+
+#search-icon::before {
+  content: " ";
+  background-image: url("#{$assetPath}/images/search-icon.svg");
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+
+#search-icon::before,
+#help-icon::before {
+  padding-top: 12px;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+#search-input {
+  font-size: 16px;
+  font-weight: 100;
+  font-family: inherit;
+  display: inline-block;
+  -webkit-appearance: none;
+  border: none;
+  background-color: transparent;
+  flex: 1 0 0;
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.no-match {
+  opacity: .5;
+}
+
+#help-icon {
+  display: inline-block;
+}
+
+/* = Footer
+-------------------------------------------------------------- */
+
+#attribution .ion-social-github {
+  margin-top: 2px;
+}
+
+.mad-labs-logo::before {
+  content: " ";
+  background-image: url("#{$assetPath}/images/madlabs-beaker.svg");
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+
+/* = Media Queries
+-------------------------------------------------------------- */
+
+@media screen and (min-width: 800px) {
+
+  section#labs {
+    flex-direction: row;
+  }
+  // Labs grow and fill the width of the screen 50-50
+  .lab {
+    flex: 1 0 auto;
+    width: auto;
+    height: auto;
+  }
+}
+
+@media screen and (min-width: 800px) and (min-height: 700px) {
+  h1 {
+    font-size: 36px;
+  }
+  .machines {
+  }
+  .space {
+
+  }
+}
+
+@import "labstatus_tooltip";

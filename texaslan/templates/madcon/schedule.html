@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %}Events{% endblock %}
+
+{% block css %}
+    <link href="{% static 'generated_css/sortable_base.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra-js %}
+    <script src="{% static 'js/bootstrap-sortable.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">MADcon Schedule {{ madcon.date|date }}</h1>
+            </div>                                
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <tbody>
+                        {% for slot in slots %}
+                                            
+                            {% for event in slot.events %}                                
+                                <tr onClick="location.href='{% url 'events:detail' event.id %}'">
+                                    {% if forloop.first %}
+                                        <th><h4>{{event.start_time|date:"f A"}}</h4></th>  
+                                    {% else %}
+                                        <th/>
+                                    {% endif %}
+                                    
+                                    <td>
+                                        <div>
+                                            <h4>{{event.title}}</h4>
+                                            {{ event.location }}
+                                            <br>
+                                            {{ event.start_time|date:"f A" }} to {{ event.end_time|date:"f A" }}
+                                            <br>
+                                        </div>
+                                    </td>
+                                </tr>                                
+                            {% endfor %}                
+
+                        {% empty %}
+                            <p>No events scheduled yet.</p>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

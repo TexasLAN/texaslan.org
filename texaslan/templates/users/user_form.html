@@ -1,0 +1,33 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+    <link href="{% static 'generated_css/datepicker_base.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra-js %}
+    <script src="{% static 'js/moment.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-material-datetimepicker.js' %}"></script>
+    <script>
+        $('#id_graduation_date').bootstrapMaterialDatePicker({weekStart: 0, time: false, format: "YYYY-MM-DD"});
+    </script>
+{% endblock %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ user.username }}</h1>
+        <a class="btn btn-primary" href="{% url 'account_email' %}">Update E-Mail</a>
+        <form class="form-horizontal" method="post" enctype="multipart/form-data" action="{% url 'users:update' %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

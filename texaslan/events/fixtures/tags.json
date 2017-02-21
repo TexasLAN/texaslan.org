@@ -1,0 +1,66 @@
+[
+  {
+    "model": "events.EventTag",
+    "pk": 0,
+    "fields": {
+      "name": "Open Rush"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "events.EventTag",
+    "pk": 1,
+    "fields": {
+      "name": "Closed Rush"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "events.EventTag",
+    "pk": 2,
+    "fields": {
+      "name": "Officer Meeting"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "events.EventTag",
+    "pk": 3,
+    "fields": {
+      "name": "General Meeting"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "events.EventTag",
+    "pk": 4,
+    "fields": {
+      "name": "Pledge"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "events.EventTag",
+    "pk": 5,
+    "fields": {
+      "name": "Service"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "events.EventTag",
+    "pk": 6,
+    "fields": {
+      "name": "Special LAN"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "events.EventTag",
+    "pk": 7,
+    "fields": {
+      "name": "Other"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  }
+]

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load account socialaccount %}
+
+{% block content %}
+    {% if not request.user.is_authenticated %}
+        <div class="welcome text-center">
+            <h2>Join the ΛΑΝ fam.<br/> No pressure.<br/> A way to better the computer community.</h2>
+            <a class="btn btn-primary" href="{% url 'about' %}">LEARN MORE</a>
+            <a class="btn btn-primary" href="{% url 'account_signup' %}">SIGN UP</a>
+            <a class="btn btn-primary" href="https://goo.gl/forms/2xFcSPDptvws8xHM2">SUBSCRIBE</a>
+        </div>
+    {% endif %}
+    <div class="events">
+        {% for event in event_list %}
+             <div class="panel card container">
+                <div class="row">
+                    <div class="card-content col-md-8 col-xs-7">
+                        <h1 class="card-title">{{ event.title }}</h1>
+                        <p>{{ event.location }}</p>
+                        <p>{{ event.start_time }}</p>
+                    </div>
+                    <div class="card-media col-md-4 col-xs-1">
+                        <img src="{{ event.image_url }}"/>
+                    </div>
+                </div>
+                <div class="card-actions row">
+                    <a class="btn btn-flat" href="{% url 'events:detail' event.id %}">View</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

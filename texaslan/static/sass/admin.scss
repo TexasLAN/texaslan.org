@@ -1,0 +1,36 @@
+@import "_colors";
+
+#header,
+.module caption,
+div .breadcrumbs {
+  background: $primary-dark;
+  color: $primary-light;
+}
+
+.module caption,
+.module h2 {
+  background: $primary;
+}
+
+a:link,
+a:visited {
+  color: $charcoal;
+}
+
+#changelist-filter li.selected a {
+  color: $primary !important;
+}
+
+.button.default,
+input[type=submit].default,
+.submit-row input.default {
+  background: $primary-dark;
+}
+
+.button,
+input[type=submit],
+input[type=button],
+.submit-row input,
+a.button {
+  background: $primary;
+}

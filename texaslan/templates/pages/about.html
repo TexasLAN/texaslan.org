@@ -1,0 +1,480 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} About || LAN {% endblock title %}
+{% block about_tab %}active{% endblock %}
+
+{% block css %}
+    <link href="{% static 'generated_css/about.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <section id="about-us">
+        <div class="container text-center">
+            <h2>Who Are We?</h2>
+
+            <div class="text">
+                <p>We are <strong>Lambda Alpha Nu</strong>, the co-ed social fraternity for students interested in
+                    computing and
+                    technology at the <strong>University of Texas at Austin</strong>. ΛΑΝ cultivates future startup
+                    founders, engineers
+                    at top tech companies, graduate students, teaching assistants, front-end developers, and most
+                    importantly, good people who are passionate about technology. We are focused on
+                    <strong>social</strong> activities
+                    and building community in a <strong>laid back</strong>, <strong>inclusive</strong> environment. We
+                    will be accepting applications from
+                    all students who are interested in tech.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section id="how-we-do-it" class="primary-color-section">
+        <div class="container text-center">
+            <h2>What Do We Do?</h2>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="icon">
+                        <i class="fa fa-group"></i>
+                    </div>
+
+                    <h3 class="event-header">Rush</h3>
+
+                    <p>Stay up to date with Rush events by subscribing to our list.</p>
+                    <a class="btn btn-default" href="https://goo.gl/forms/2xFcSPDptvws8xHM2">Subscribe</a>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon">
+                        <i class="fa fa-laptop"></i>
+                    </div>
+
+                    <h3 class="event-header">Service</h3>
+
+                    <p>LAN gives its members opportunities to reach out and help the community be the best and more
+                        versed when it comes to topics relating to computer science.</p>
+                    <a class="btn btn-default" href="{% url 'events:list' %}">Events</a>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon">
+                        <i class="fa fa-coffee"></i>
+                    </div>
+
+                    <h3 class="event-header">Social</h3>
+
+                    <p>We also occasionally like to have a little fun once in awhile as a group, such as kayaking,
+                        hiking, or bowling!</p>
+                    <a class="btn btn-default" href="{% url 'events:list' %}">Events</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="news">
+        <div class="container text-center">
+            <h2>How do I stay up to date?</h2>
+            <div class="text">
+                <p>With rush events at every semester, you'll want to stay in the loop
+                    so you know how to best get to know us and we to know you.</p>
+            </div>
+            <div class="text row">
+                <div class="col-md-4">
+                    <div class="icon">
+                        <i class="fa fa-facebook"></i>
+                    </div>
+
+                    <h3 class="event-header">Facebook Page</h3>
+
+                    <p>We post Facebook events for all LAN rush events. Follow our page to keep connected.
+                    </p>
+                    <a class="btn btn-default" href="https://facebook.com/texaslambdaalphanu/">Facebook</a>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+
+                    <h3 class="event-header">Rush List</h3>
+
+                    <p>We send out a notice at each beginning of the semester of upcoming rush events and news. It's the
+                        best way to start your semester.
+                    </p>
+                    <a class="btn btn-default"
+                       href="https://goo.gl/forms/2xFcSPDptvws8xHM2">Subscribe</a>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+
+                    <h3 class="event-header">Calendar</h3>
+
+                    <p>Our calendar has the name, location and time of all our upcoming events.
+                        Check back for breaking changes.
+                    </p>
+                    <a class="btn btn-default" href="{% url 'events:list' %}">Calendar</a></div>
+            </div>
+        </div>
+    </section>
+    <section id="officers" class="dark-section">
+        <div class="container text-center">
+            <h2>Officers</h2>
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#current" aria-controls="profile" role="tab" data-toggle="tab">
+                        Current
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#founders" aria-controls="home" role="tab" data-toggle="tab">
+                        Founders
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="current">
+                    <ul class="team-members">
+                        <li>
+                            <img alt="" src="{% static 'images/team/drew.jpg' %}"/>
+                            <ul class="social">
+                                <li><a target="_new" href="https://www.facebook.com/drew.romanyk"><i
+                                        class="fa fa-facebook"></i></a>
+                                </li>
+                                <li><a target="_new" href="https://www.linkedin.com/in/andrewromanyk"><i
+                                        class="fa fa-linkedin"></i></a></li>
+                            </ul>
+
+                            <h4>Drew Romanyk</h4>
+                            <span class="role">President</span>
+
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/brian.jpg' %}"/>
+                            <ul class="social">
+                                <li><a target="_new" href="https://www.facebook.com/theBrianCui"><i
+                                        class="fa fa-facebook"></i></a>
+                                </li>
+                                <li><a target="_new" href="https://www.linkedin.com/in/brian-cui-b952a2a4"><i
+                                        class="fa fa-linkedin"></i></a></li>
+                            </ul>
+
+                            <h4>Brian Cui</h4>
+                            <span class="role">Vice President</span>
+
+                        </li>
+                        <li>
+                            <img alt=""
+                                 src="https://www.gravatar.com/avatar/9704c9988257b6d76d2c2a54d71db710.jpg?s=512"
+                                 class="hoverZoomLink"/>
+                            <ul class="social">
+
+                                <li><a target="_new" href="http://linkedin.com/in/niwalker"><i
+                                        class="fa fa-linkedin"></i></a>
+                                </li>
+                                <li><a target="_new" href="http://nickwalker.us"><i class="fa fa-external-link"></i></a>
+                                </li>
+                            </ul>
+
+                            <h4>Nick Walker</h4>
+                            <span class="role">MAD Labs & Tech Director</span>
+
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/julio.png' %}"
+                                 class="hoverZoomLink"/>
+                            <ul class="social">
+                            </ul>
+
+                            <h4>Julio Correa</h4>
+                            <span class="role">MAD Labs & Branding Director</span>
+
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/alvin.jpg' %}"/>
+                            <ul class="social">
+                                <li><a target="_new" href="https://www.facebook.com/alvin319"><i
+                                        class="fa fa-facebook"></i></a>
+                                </li>
+                                <li><a target="_new" href="https://www.linkedin.com/in/alvinqdeng"><i
+                                        class="fa fa-linkedin"></i></a></li>
+                            </ul>
+
+                            <h4>Alvin Deng</h4>
+                            <span class="role">Logistics Director</span>
+
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/kiana.jpg' %}"/>
+                            <ul class="social">
+                            </ul>
+
+                            <h4>Kiana Alcala</h4>
+                            <span class="role">Corporate Director</span>
+
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/cole.png' %}"/>
+                            <ul class="social">
+                            </ul>
+
+                            <h4>Cole Mayo</h4>
+                            <span class="role">Corporate Director</span>
+
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/melanie.jpg' %}"/>
+                            <ul class="social">
+                                <li><a target="_new" href="https://www.facebook.com/obits13"><i
+                                        class="fa fa-facebook"></i></a>
+                                </li>
+                                <li><a target="_new" href="https://www.linkedin.com/in/obits13"><i
+                                        class="fa fa-linkedin"></i></a></li>
+                            </ul>
+
+                            <h4>Melanie Rivera</h4>
+                            <span class="role">Outreach Director</span>
+                        </li>
+                    </ul>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="founders">
+                    <ul class="team-members">
+                        <li>
+                            <img alt="" src="{% static 'images/team/comyar.jpg' %}"/>
+                            <ul class="social">
+                            </ul>
+
+                            <h4>Comyar Zaheri</h4>
+                            <span class="year">Class of 2014</span>
+                            <span class="role">Founder, President, iOS Instructor</span>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/niko.jpg' %}"/>
+                            <ul class="social">
+                                <li><a target="_new" href="https://www.linkedin.com/in/niko-lazaris-88946186">
+                                    <i class="fa fa-linkedin"></i>
+                                </a></li>
+                            </ul>
+
+                            <h4>Niko Lazaris</h4>
+                            <span class="year">Class of 2016</span>
+                            <span class="role">Founder, President, Training Director, Android Instructor</span>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/sai.jpg' %}"/>
+                            <ul class="social">
+                                <li><a target="_new" href="https://www.linkedin.com/in/saiavala">
+                                    <i class="fa fa-linkedin"></i>
+                                </a></li>
+                            </ul>
+
+                            <h4>Sai Avala</h4>
+                            <span class="year">Class of 2015</span>
+                            <span class="role">Founder, Vice President, Corporate Director, Android Instructor</span>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/eddie.jpg' %}"/>
+                            <ul class="social">
+                            </ul>
+
+                            <h4>Eddie Saenz</h4>
+                            <span class="year">Class of 2014</span>
+                            <span class="role">Founder, Web Master</span>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/daniel.png' %}"/>
+                            <ul class="social">
+                                <li><a target="_new" href="https://www.linkedin.com/in/dmonroy">
+                                    <i class="fa fa-linkedin"></i>
+                                </a></li>
+                            </ul>
+
+                            <h4>Daniel Monroy</h4>
+                            <span class="year">Class of 2015</span>
+                            <span class="role">Founder, Department Liason</span>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/matt.jpg' %}"/>
+                            <ul class="social">
+                                <li><a target="_new" href="https://www.linkedin.com/in/ebeweber">
+                                    <i class="fa fa-linkedin"></i>
+                                </a></li>
+                            </ul>
+
+                            <h4>Matt Ebeweber</h4>
+                            <span class="year">Class of 2014</span>
+                            <span class="role">Web Instructor</span>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/kelly.jpg' %}"/>
+                            <ul class="social">
+                                <li><a target="_new" href="https://www.linkedin.com/in/kelwilson">
+                                    <i class="fa fa-linkedin"></i>
+                                </a></li>
+                            </ul>
+
+                            <h4>Kelly Wilson</h4>
+                            <span class="year">Class of 2016</span>
+                            <span class="role">Events Director</span>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/michael.jpg' %}"/>
+                            <ul class="social">
+                            </ul>
+
+                            <h4>Michael Brennan</h4>
+                            <span class="year">Class of 2016</span>
+                            <span class="role">MADLabs Director, iOS Instructor</span>
+                        </li>
+                        <li>
+                            <img alt="" class="empty-img" src="{% static 'images/team/heather.jpg' %}"/>
+                            <ul class="social">
+                            </ul>
+
+                            <h4>Heather Zeis</h4>
+                            <span class="year">Class of 2016</span>
+                            <span class="role">iOS Instructor</span>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/sarah.jpg' %}"/>
+                            <ul class="social">
+                                <li><a target="_new" href="https://www.linkedin.com/in/sarahstancik">
+                                    <i class="fa fa-linkedin"></i>
+                                </a></li>
+                            </ul>
+
+                            <h4>Sarah Stancik</h4>
+                            <span class="year">Class of 2016</span>
+                            <span class="role">MADLabs Director, Branding Director</span>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/tomas.jpg' %}"/>
+                            <ul class="social">
+                                <li><a target="_new" href="https://www.linkedin.com/in/tomasro27">
+                                    <i class="fa fa-linkedin"></i>
+                                </a></li>
+                            </ul>
+
+                            <h4>Tomas Rodriguez</h4>
+                            <span class="year">Class of 2016</span>
+                            <span class="role">President, Android Instructor</span>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/kaelin.jpg' %}"/>
+                            <ul class="social">
+                                <li><a target="_new" href="https://www.linkedin.com/in/kaelinhooper">
+                                    <i class="fa fa-linkedin"></i>
+                                </a></li>
+                            </ul>
+
+                            <h4>Kaelin Hooper</h4>
+                            <span class="year">Class of 2016</span>
+                            <span class="role">Corporate Director</span>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/megan.jpg' %}"/>
+                            <ul class="social">
+                                <li><a target="_new" href="https://www.linkedin.com/in/megan-chen-27989456">
+                                    <i class="fa fa-linkedin"></i>
+                                </a></li>
+                            </ul>
+
+                            <h4>Megan Chen</h4>
+                            <span class="year">Class of 2018</span>
+                            <span class="role">Outreach Director</span>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/weston.jpg' %}"/>
+                            <ul class="social">
+                                <li><a target="_new" href="https://www.linkedin.com/in/megan-chen-27989456">
+                                    <i class="fa fa-linkedin"></i>
+                                </a></li>
+                            </ul>
+
+                            <h4>Weston Selleck</h4>
+                            <span class="year">Class of 2018</span>
+                            <span class="role">Workshop Director</span>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/nishanth.jpg' %}"/>
+
+                            <h4>Nishanth Shanmugham</h4>
+                            <span class="year">Class of 2017</span>
+                            <span class="role">Web Instructor</span>
+                        </li>
+                        <li>
+                            <img alt="" src="{% static 'images/team/frank.jpg' %}"/>
+
+                            <h4>Frank Long</h4>
+                            <span class="year">Class of 2017</span>
+                            <span class="role">Android Instructor</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="gallery" class="primary-color-section">
+        <div id="gallery-images" class="container text-center">
+            <h2>Gallery</h2>
+            <ul class="thumbnails">
+                <li>
+                    <a href="{% static 'images/madcon/madcon_00.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_00.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_01.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_01.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_02.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_02.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_03.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_03.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_04.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_04.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_05.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_05.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_06.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_06.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_07.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_07.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_08.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_08.jpg' %}">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% static 'images/madcon/madcon_09.jpg' %}" rel="group"
+                       class="hoverZoomLink">
+                        <img src="{% static 'images/madcon/madcon_09.jpg' %}">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}

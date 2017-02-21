@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'generated_css/addtocal_base.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra-js %}
+    <script src="{% static 'js/atc.min.js' %}"></script>
+    <script src="{% static 'js/jquery.qrcode.js' %}"></script>
+    <script src="{% static 'js/qrcode.js' %}"></script>
+    {% if request.user.is_authenticated %}
+        <script>
+            jQuery('#qrcode').qrcode({
+                text: "{{ request.get_host }}{% url 'events:confirm' object.id request.user.username %}"
+            });
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% if request.user.is_authenticated and not request.user in object.attendees.all %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Sign in to event</h1>
+                </div>
+                <div class="panel-body">
+                    <p>Get an officer to sign you in at the event</p>
+                    <div id="qrcode" class="text-center"></div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{ object.title }}</h1>
+            </div>
+            <div class="panel-body">
+                <h5>Location: </h5>
+                <p>{{ object.location }}</p>
+                <h5>Starts: </h5>
+                <p>{{ object.start_time }}</p>
+                <h5>Ends: </h5>
+                <p>{{ object.end_time }}</p>
+                <span class="addtocalendar atc-style-blue">
+                    <var class="atc_event">
+                        <var class="atc_date_start">{{ object.start_time }}</var>
+                        <var class="atc_date_end">{{ object.end_time }}</var>
+                        <var class="atc_timezone">America/Chicago</var>
+                        <var class="atc_title">{{ object.title }}</var>
+                        <var class="atc_description">{{ object.description }}</var>
+                        <var class="atc_location">{{ object.location }}</var>
+                        <var class="atc_organizer">{{ object.creator.full_name }}</var>
+                        <var class="atc_organizer_email">{{ object.creator.email }}</var>
+                    </var>
+                </span>
+                <h5>Creator: </h5>
+                <p>{{ object.creator.full_name }}</p>
+                <h5>Description: </h5>
+                <p>{{ object.description }}</p>
+                <h5>Attendees: </h5>
+                <p>{{ object.attendees.all|length }}</p>
+                {% if request.user.is_staff %}
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                        {% for attendee in object.attendees.all %}
+                            <tr>
+                                <td>{{ attendee.full_name }}</td>
+                                <td>{{ attendee.email }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+

@@ -1,0 +1,477 @@
+$assetPath: "/static/";
+
+@import "_bootstrap_paper";
+@import "_colors";
+@import "_dimens";
+@import "_fonts";
+@import "navbar";
+
+
+////////////////////////////////
+//General//
+////////////////////////////////
+
+body {
+  padding-top: $nav-bar-height;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: "Merriweather Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: $primary-text;
+  background-color: $primary-bg;
+  margin: 0;
+}
+
+.panel {
+  margin-top: 23px;
+  margin-bottom: 23px;
+}
+
+section {
+  line-height: 1.5;
+  padding: 24px 0 24px 0;
+}
+
+.primary-color-section {
+  background-color: $primary;
+  color: $white;
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: inherit;
+  }
+}
+
+.dark-section {
+  background-color: $charcoal;
+  color: $white;
+
+  a.btn {
+    border-color: $white;
+    color: $charcoal;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: inherit;
+  }
+}
+
+section .container {
+  padding-top: 0px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 900;
+}
+
+h3 {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+h4 {
+  font-weight: 700;
+}
+
+a {
+  color: $primary;
+}
+
+a:hover {
+  color: $primary-dark;
+}
+
+.circle-img {
+  border-radius: 50%;
+}
+
+////////////////////////////////
+//Welcome//
+////////////////////////////////
+
+.welcome {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bg/welcome_bg.min.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  * {
+    color: white;
+  }
+
+  p {
+    font-size: 20px;
+  }
+}
+
+////////////////////////////////
+//Buttons//
+////////////////////////////////
+
+.btn-disabled {
+  cursor: none;
+  opacity: .5;
+  pointer-events: none;
+}
+
+.match_parent_width {
+  width: 100%;
+}
+
+.btn-primary,
+.btn-primary:focus {
+  background-color: $primary;
+}
+
+.btn-primary:hover {
+  background-color: $primary-dark;
+}
+
+.btn-primary:active {
+  background-color: $primary-dark;
+  background-image: -webkit-radial-gradient(circle, $primary-dark 10%, $primary 11%);
+  background-image: -o-radial-gradient(circle, $primary-dark 10%, $primary 11%);
+  background-image: radial-gradient(circle, $primary-dark 10%, $primary 11%);
+}
+
+.btn-flat {
+  background: none;
+  box-shadow: none;
+}
+
+////////////////////////////////
+//Cards//
+////////////////////////////////
+
+.events {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: 15px;
+
+  .card {
+    margin: auto;
+    margin-top: 23px;
+    -webkit-flex: 0 90%;
+    flex: 0 90%;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .events .card {
+    -webkit-flex: 0 45%;
+    flex: 0 45%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .events .card {
+    width: 400px;
+    flex: 0 400px;
+  }
+}
+
+.card {
+  position: relative;
+  margin-top: 25px;
+}
+
+
+.card-content {
+  position: relative;  
+
+  h1 {
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 13px;
+    margin: 0 0 0 0;
+  }
+}
+
+.card-actions {
+  position: relative;  
+  padding-left: 15px;
+  bottom: 8px;  
+  a {
+    padding: 0;
+  }
+}
+
+.card-media {
+  position: relative;
+  top: 0;
+  right: 0;
+  margin: 16px;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+
+  img {
+    height: 100%;
+    min-width: 100%;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+    overflow: hidden;
+  }
+}
+
+////////////////////////////////
+//Forms//
+////////////////////////////////
+
+textarea {
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.control-label {
+  color: #666;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.controls {
+  margin-bottom: 10px;
+
+  input[type=text], input[type=email], input[type=password], select, textarea {
+    outline: 0;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .checkbox {
+    padding-left: 25px;
+  }
+}
+
+input[type=checkbox]:focus:after,
+input[type=radio]:checked:after {
+  border-color: $primary;
+}
+
+input[type=radio]:checked:before {
+  background-color: $primary;
+}
+
+input[type=checkbox]:checked:after {
+  border-color: $primary;
+  background-color: $primary;
+}
+
+select:focus,
+select.form-control:focus,
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+[type=text].form-control:focus,
+[type=password].form-control:focus,
+[type=email].form-control:focus,
+[type=tel].form-control:focus,
+[contenteditable].form-control:focus {
+  -webkit-box-shadow: inset 0 -2px 0 $primary;
+  box-shadow: inset 0 -2px 0 $primary;
+}
+
+////////////////////////////////
+//Alerts//
+////////////////////////////////
+
+// bootstrap alert CSS, translated to the django-standard levels of
+// debug, info, success, warning, error
+
+.alert-container {
+  padding-top: 14px;
+  z-index: 100;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.alert {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6px;
+  margin-bottom: 6px;
+
+  p {
+    display: inline-block;
+    float: left;
+  }
+
+  .close {
+    display: inline-block;
+    float: right;
+  }
+}
+
+.alert-debug {
+  background-color: $white;
+  border-color: $mint-green;
+  color: $black;
+}
+
+.alert-error {
+  background-color: $pink;
+  border-color: $dark-pink;
+  color: $red;
+}
+
+////////////////////////////////
+//Non-Navbar Tabs//
+////////////////////////////////
+
+.nav-tabs > li > a:hover,
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  border: none;
+  -webkit-box-shadow: inset 0 -2px 0 $primary !important;
+  box-shadow: inset 0 -2px 0 $primary !important;
+  color: $primary !important;
+}
+
+////////////////////////////////
+//Django Toolbar//
+////////////////////////////////
+
+// Display django-debug-toolbar.
+// See https://github.com/django-debug-toolbar/django-debug-toolbar/issues/742
+// and https://github.com/pydanny/cookiecutter-django/issues/317
+
+[hidden][style="display: block;"] {
+  display: block !important;
+}
+
+////////////////////////////////
+//Footer//
+////////////////////////////////
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  background-color: $charcoal;
+  color: $white;
+  text-align: center;
+}
+
+footer .text {
+  padding-top: 25px;
+  display: flex;
+}
+
+footer li:hover {
+  color: rgba(255, 255, 255, 0.6)
+}
+
+footer * {
+  color: inherit;
+  font-weight: 300;
+}
+
+footer .social {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 6px;
+  opacity: .8;
+  padding-left: 0;
+}
+
+footer .social li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+footer .social li a {
+  font-size: 18px;
+}
+
+footer .copyright {
+  opacity: .8;
+}
+
+////////////////////////////////
+//Wide devices//
+////////////////////////////////
+
+@media screen and (min-width: 900px) {
+
+  .welcome, .mad-con-head {
+    padding-top: 115px;
+    padding-bottom: 115px;
+  }
+
+  section .text .lead {
+    font-weight: bold;
+  }
+
+  section .text.emphasized {
+    font-size: 24px;
+    .lead {
+      font-size: 28px;
+    }
+  }
+
+  h2 {
+    font-size: 36px;
+    line-height: 48px;
+    font-weight: 900;
+  }
+
+  section {
+    padding: 0 0 82px 0;
+  }
+
+  section h2 {
+    margin: 0 0 48px 0;
+  }
+
+  section .container {
+    padding: 82px 24px 0px 24px;
+  }
+
+  footer {
+    padding: 0 0 12px 0;
+  }
+  footer .text p {
+    flex: 1;
+  }
+  footer .social {
+    margin: 0;
+    float: left;
+  }
+  footer .copyright {
+    display: inline-block;
+    text-align: right;
+  }
+
+}

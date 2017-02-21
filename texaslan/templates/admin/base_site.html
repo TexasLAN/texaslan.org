@@ -1,0 +1,22 @@
+{% extends "admin/base.html" %}
+{% load staticfiles %}
+
+{% block title %}MAD Admin{%  endblock %}
+{% block extrahead %}
+
+    <meta name="theme-color" content="#2196f3">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="196x196" href="{% static 'images/icons/favicon-196.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/icons/favicon-32.png' %}"/>
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/icons/favicon-96.png' %}"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/icons/favicon-16.png' %}"/>
+
+    <link rel="apple-touch-icon" sizes="160x160" href="{% static 'images/icons/apple-touch-icon@3x.png' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon-96x96.png' %}">
+    <link rel='mask-icon' href='{% static 'images/icons/mask.svg' %}' color='#2196f3'>
+{% endblock %}
+
+{% block extrastyle %}
+    <link href="{% static 'generated_css/admin.min.css' %}" rel="stylesheet">
+{%  endblock %}

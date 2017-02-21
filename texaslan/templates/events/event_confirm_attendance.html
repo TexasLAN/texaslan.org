@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ event.title }} & {{ user.username }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Confirm attendance for {{ user.full_name }}</h1>
+            </div>
+            <div class="panel-body">
+                <div class="text-center">
+                    <img class="circle-img" src="{{ user.get_gravatar_image_url }}"/>
+                </div>
+                <form class="form-horizontal" method="post" action="{% url 'events:confirm' event.id user.username %}">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input type="hidden" name="event_id" value="{{ event.id }}"/>
+                    <input type="hidden" name="username" value="{{ user.username }}"/>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-primary">Confirm</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+

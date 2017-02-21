@@ -1,0 +1,262 @@
+@import "_colors";
+@import "base";
+
+/*--- = Layout  */
+#clndr,
+.schedule {
+  width: 100%;
+}
+
+.clndr {
+  display: flex;
+  flex-direction: column;
+  margin-top: 23px;
+}
+
+.upcoming-events {
+  margin: 24px 0 48px 0;
+  padding: 0 12px;
+}
+
+/*--- = Head  */
+
+.clndr thead {
+  text-align: center;
+}
+
+.clndr thead td {
+  padding: 5px;
+}
+
+.clndr .head {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/*--- = Cells  */
+
+.clndr .day {
+  border: 1px solid rgba(0, 0, 0, .025);
+}
+
+.clndr .event {
+  cursor: pointer;
+}
+
+/*--- = Upcoming Events  */
+
+.upcoming-events ul {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.upcoming-events li {
+  margin-bottom: 12px;
+  flex: 1 1 300px;
+}
+
+/*--- = Popout  */
+
+.clndr .event-popout {
+  background-color: #5D5D5D;
+  color: white;
+  text-align: center;
+}
+
+.clndr .event-popout.date-header td {
+  padding-top: 12px;
+}
+
+.clndr .event-popout td {
+  padding-bottom: 12px;
+}
+
+.clndr .event-popout span {
+  display: block;
+}
+
+.clndr .event-popout .popout-event-title {
+  font-weight: bold;
+}
+
+.clndr .event-popout .popout-event-location,
+.clndr .event-popout .popout-event-time {
+  font-size: 14px;
+}
+
+/*--- =   */
+
+.clndr .event-item-location,
+.clndr time {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.clndr .header-days {
+  background-color: $primary;
+}
+
+.clndr .controls {
+  background-color: $primary;
+}
+
+.clndr .clndr-next-button a,
+.clndr .clndr-previous-button a {
+  width: 100%;
+  height: 100%;
+  color: $white;
+  display: block;
+  text-decoration:none;
+}
+
+.clndr .clndr-next-button:hover,
+.clndr .clndr-previous-button:hover {
+  background-color: rgba(0, 0, 0, .15);
+}
+
+.clndr .day-contents {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+}
+
+/** a day with events */
+.clndr .day.event.other-event .day-contents {
+  border-radius: 50%;
+  background-color: rgba(255, 187, 43, 0.8);
+  color: #fff;
+}
+
+/*--- = Day signifiers  */
+
+ul.day-event-signifiers {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 5px;
+  height: 5px;
+  width: 100%;
+}
+
+ul.day-event-signifiers li {
+  background-color: darkgray;
+  flex: 1 1;
+  max-width: 33.3%;
+  height: 100%;
+}
+
+ul.day-event-signifiers li.ios {
+  background-color: red;
+}
+
+ul.day-event-signifiers li.android {
+  background-color: green;
+}
+
+ul.day-event-signifiers li.windows {
+  background-color: blue;
+}
+
+ul.day-event-signifiers li.web {
+  background-color: purple;
+}
+
+.courses li.web {
+  border-color: purple;
+}
+
+.courses li.windows {
+  border-color: blue
+}
+
+.courses li.android {
+  border-color: green;
+}
+
+.courses li.ios {
+  border-color: red;
+}
+
+ul.day-event-signifiers li.office-hours {
+  background-image: linear-gradient(90deg, transparent 60%, rgba(255, 255, 255, .5) 60%);
+  background-size: 4px 4px;
+}
+
+/*--- =   */
+.clndr .today {
+  background-color: #FFF
+}
+
+.calendar {
+  background-color: #EEE;
+  color: #222;
+  width: 100%;
+}
+
+.calendar td.day {
+  padding: 5px;
+  text-align: center;
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+.calendar thead {
+  background-color: darkgray;
+  color: white;
+}
+
+thead tr {
+  border-bottom: 1px solid rgba(0, 0, 0, .05);
+}
+
+.adjacent-month {
+  color: #CCC;
+}
+
+.no-events {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.5)
+}
+
+.clndr-previous-button,
+.clndr-next-button {
+  cursor: pointer;
+}
+
+/*--- = Selected  */
+
+.clndr .day.event.selected-event {
+  background-color: #ADADAD;
+}
+
+.clndr .day.event.selected-event {
+  color: white;
+}
+
+@media screen and (min-width: 900px) {
+  /*--- = Layout  */
+  .clndr {
+    margin-bottom: 24px;
+    flex-direction: row;
+  }
+  .clndr .calendar-wrap {
+    flex: 1 66%;
+  }
+  .clndr .upcoming-events {
+    flex: 1 calc(33% - 48px);
+    padding: 0 24px;
+  }
+  .clndr thead td {
+    padding: 10px;
+  }
+  .calendar td.day {
+    padding: 15px 10px 10px 10px; /* 5px less on bottom to leave space for signifiers */
+  }
+}
