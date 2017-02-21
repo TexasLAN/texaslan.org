@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.template.defaultfilters import filesizeformat
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import Group
 
 from os import path
 
@@ -9,9 +10,7 @@ from .models import User
 
 
 class UserSignupForm(forms.ModelForm):
-
     class Meta:
-
         model = User
         fields = ['full_name', 'nick_name', 'graduation_date', 'concentration', 'gender']
         widgets = {
@@ -25,12 +24,14 @@ class UserSignupForm(forms.ModelForm):
         user.full_name = self.cleaned_data['full_name']
         user.nick_name = self.cleaned_data['nick_name']
         user.graduation_date = self.cleaned_data['graduation_date']
-        user.resume = self.cleaned_data['resume']
         user.save()
+
+        open_rush_group = Group.objects.get(name="Open Rushie")
+        open_rush_group.user_set.add(user)
+        open_rush_group.save()
 
 
 class UserUpdateForm(forms.ModelForm):
-
     class Meta:
         model = User
         fields = ['full_name', 'nick_name', 'graduation_date', 'concentration', 'gender']
