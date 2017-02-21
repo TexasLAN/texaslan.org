@@ -56,7 +56,7 @@ THIRD_PARTY_APPS = (
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
-    'oauth2_provider', # OAuth Provider
+    'oauth2_provider',  # OAuth Provider
 )
 
 # Apps specific for this project go here.
@@ -67,6 +67,7 @@ LOCAL_APPS = (
     'texaslan.events.apps.EventsConfig',
     'texaslan.go.apps.GoConfig',
     'texaslan.notify.apps.NotifyConfig',
+    'texaslan.comments.apps.CommentsConfig',
 )
 
 CLEANUP_APP = (

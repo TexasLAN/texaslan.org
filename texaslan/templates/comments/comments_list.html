@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% load crispy_forms_tags %}
+{% block title %}Comments{% endblock %}
+{% block comments_tab %}active{% endblock %}
+
+{% block css %}
+    <link href="{% static 'generated_css/base.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Send Comments</h1>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" method="post" action="{% url 'comments:list' %}">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="panel panel-default" role="tabpanel">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs nav-justified" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#open"
+                           aria-controls="home"
+                           role="tab"
+                           data-toggle="tab">
+                            Open
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#closed"
+                           aria-controls="profile"
+                           role="tab"
+                           data-toggle="tab">
+                            Closed
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <br/>
+                <div role="tabpanel" class="tab-pane active" id="open">
+                    {% for comment in comments %}
+                        {% if comment.is_open %}
+                            <li class="list-group-item">
+                                <p>{{ comment.message }}</p>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="closed">
+                    {% for comment in comments %}
+                        {% if not comment.is_open %}
+                            <li class="list-group-item">
+                                <p>{{ comment.message }}</p>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

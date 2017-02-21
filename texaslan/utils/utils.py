@@ -18,6 +18,16 @@ class OfficerRequiredMixin(UserPassesTestMixin):
         return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
 
 
+class ActiveRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return not self.request.user.is_anonymous and self.request.user.is_active_user()
+
+    def handle_no_permission(self):
+        if not self.request.user.is_anonymous:
+            raise PermissionDenied(self.get_permission_denied_message())
+        return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
+
+
 class MemberRequiredMixin(UserPassesTestMixin):
     def test_func(self):
         return not self.request.user.is_anonymous and (
@@ -27,6 +37,7 @@ class MemberRequiredMixin(UserPassesTestMixin):
         if not self.request.user.is_anonymous:
             raise PermissionDenied(self.get_permission_denied_message())
         return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
+
 
 def subscribe_to_newsletter(email, first_name, last_name):
     # sg = sendgrid.SendGridAPIClient(api_key=SENDGRID_API_KEY)
