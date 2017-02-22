@@ -5,7 +5,9 @@ texaslan.com
     :target: https://raw.githubusercontent.com/texaslan/texaslan.com/master/LICENSE
     :alt: MIT Licensed
 
-The main online hub for Texas LAN, built with Django.
+The main online hub for Texas LAN, built with Django. This project is heavily based on this project here_
+
+.. _here: https://github.com/txcsmad/txcsmad.com
 
 * User system
 * Event system with QR code check-in
