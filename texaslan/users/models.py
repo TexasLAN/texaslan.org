@@ -12,7 +12,8 @@ GENDER_CHOICES = (
     ("M", "Male"),
     ("F", "Female"),
     ("N", "Non - binary"),
-    ("P", "Prefer not to answer"))
+    ("P", "Prefer not to answer")
+)
 CONCENTRATION_CHOICES = (
     ("CS", "Computer Science"),
     ("D", "Design"),
@@ -21,6 +22,15 @@ CONCENTRATION_CHOICES = (
     ("M", "Math"),
     ("MIS", "Management Information Systems"),
     ("O", "Other")
+)
+LAN_CLASS = (
+    ("F", "Founder"),
+    ("A", "Alpha"),
+    ("B", "Beta"),
+    ("G", "Gamma"),
+    ("D", "Delta"),
+    ("E", "Epsilon"),
+    ("Z", "Zeta"),
 )
 
 
@@ -32,6 +42,7 @@ class User(AbstractUser):
     graduation_date = models.DateField()
     concentration = models.CharField(max_length=3, choices=CONCENTRATION_CHOICES, default="O")
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default="P")
+    lan_class = models.CharField(max_length=3, choices=LAN_CLASS, null=True, blank=True)
 
     def __str__(self):
         return self.username
