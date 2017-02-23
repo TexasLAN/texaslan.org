@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %}Applications{% endblock %}
+{% block applications_list_tab %}active{% endblock %}
+
+{% block css %}
+    <link href="{% static 'generated_css/sortable_base.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra-js %}
+    <script src="{% static 'js/bootstrap-sortable.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Rush Applications</h1>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped sortable">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Reviewed</th>
+                    </tr>
+                    </thead>
+                    {% for application, reviewed in application_list %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'applications:detail' application.id %}">{{ application.applicant_user.full_name }}</a>
+                            </td>
+                            <td>{{ application.applicant_user.email }}</td>
+                            <td>
+                                {% if reviewed %}✔{% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

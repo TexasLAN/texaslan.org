@@ -67,7 +67,6 @@ class EventDetailView(DetailView):
 class EventConfirmAttendanceView(OfficerRequiredMixin, FormView):
     template_name = 'events/event_confirm_attendance.html'
     form_class = ConfirmAttendanceForm
-    success_url = '/thanks/'
 
     def get_context_data(self, **kwargs):
         context = super(EventConfirmAttendanceView, self).get_context_data(**kwargs)

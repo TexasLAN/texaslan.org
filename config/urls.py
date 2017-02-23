@@ -23,6 +23,7 @@ urlpatterns = [
                   url(r'^go/', include('texaslan.go.urls', namespace='go')),
                   url(r'^notify/', include('texaslan.notify.urls', namespace='notify')),
                   url(r'^comments/', include('texaslan.comments.urls', namespace='comments')),
+                  url(r'^applications/', include('texaslan.applications.urls', namespace='applications')),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

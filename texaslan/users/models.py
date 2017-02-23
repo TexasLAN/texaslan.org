@@ -52,7 +52,19 @@ class User(AbstractUser):
 
     def get_gravatar_image_url(self):
         return 'https://secure.gravatar.com/avatar/' + hashlib.md5(
-            self.email.lower().encode('utf-8')).hexdigest() + '?s=300'
+            self.email.lower().encode('utf-8')).hexdigest() + '?s=200'
+
+    def get_gender(self):
+        for (short, actual) in GENDER_CHOICES:
+            if short == self.gender:
+                return actual
+        return "N/A"
+
+    def get_concentration(self):
+        for (short, actual) in CONCENTRATION_CHOICES:
+            if short == self.concentration:
+                return actual
+        return "N/A"
 
     # User Type
 

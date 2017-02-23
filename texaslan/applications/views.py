@@ -1,0 +1,86 @@
+from django.contrib import messages
+from django.core.urlresolvers import reverse
+from django.views.generic.edit import FormView
+from django.views.generic import FormView, UpdateView, ListView, TemplateView
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from .forms import ApplicationForm, ReviewForm
+from .models import Application, Review
+from texaslan.utils.utils import OpenRushieRequiredMixin, ActiveRequiredMixin
+from texaslan.users.models import User
+from texaslan.events.models import Event
+
+
+class ApplicationModifyView(OpenRushieRequiredMixin, UpdateView):
+    template_name = 'applications/applications_form.html'
+    form_class = ApplicationForm
+
+    def get_object(self, queryset=None):
+        (application, created) = Application.objects.get_or_create(applicant_user__pk=self.request.user.id)
+        application.applicant_user = self.request.user
+        return application
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, form.errors.as_data()['question_1'][0].message)
+        return super(ApplicationModifyView, self).form_invalid(form)
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.SUCCESS, 'Successfully saved application!')
+        return reverse('applications:modify')
+
+
+class ApplicationListView(ActiveRequiredMixin, TemplateView):
+    template_name = 'applications/applications_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ApplicationListView, self).get_context_data(**kwargs)
+
+        application_list = Application.objects.all()
+        review_list = []
+        for application in application_list:
+            try:
+                Review.objects.get(application__pk=application.pk, reviewer_user__pk=self.request.user.pk)
+                review_list.append(True)
+            except Review.DoesNotExist:
+                review_list.append(False)
+        context['application_list'] = zip(Application.objects.all(), review_list)
+        return context
+
+
+class ApplicationDetailView(ActiveRequiredMixin, FormView):
+    template_name = 'applications/applications_detail.html'
+    form_class = ReviewForm
+
+    def get_context_data(self, **kwargs):
+        context = super(ApplicationDetailView, self).get_context_data(**kwargs)
+        app_id = int(self.kwargs.get("id"))
+        context['application'] = get_object_or_404(Application, pk=app_id)
+        context['user'] = context['application'].applicant_user
+
+        reviews = Review.objects.filter(application__pk=app_id)
+        avg_rating_total = 0
+        avg_rating_count = 0
+        for review in reviews:
+            if review.rating != None:
+                avg_rating_count += 1
+                avg_rating_total += review.rating
+        if avg_rating_count != 0:
+            context['avg_rating'] = "{0:.2f}".format(avg_rating_total / avg_rating_count)
+        else:
+            context['avg_rating'] = "-"
+        context['reviews'] = reviews
+
+        context['events'] = list(context['user'].event_attendees.all())
+        print(context['events'])
+        return context
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.modify_review()
+        return super(ApplicationDetailView, self).form_valid(form)
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.SUCCESS, 'Confirmed!')
+        return reverse('applications:list')

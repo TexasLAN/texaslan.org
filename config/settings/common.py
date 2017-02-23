@@ -68,6 +68,7 @@ LOCAL_APPS = (
     'texaslan.go.apps.GoConfig',
     'texaslan.notify.apps.NotifyConfig',
     'texaslan.comments.apps.CommentsConfig',
+    'texaslan.applications.apps.ApplicationsConfig',
 )
 
 CLEANUP_APP = (
@@ -266,9 +267,11 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 SENDGRID_API_KEY = get_config("SENDGRID_API_KEY")
 SENDGRID_MAILING_LIST_ID = get_config("SENDGRID_MAILING_LIST_ID")
 
-UTCS_API_KEY = get_config("UTCS_API_KEY")
-
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
 ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
+
+# LAN GENERAL SETTINGS
+# ------------------------------------------------------------------------------
+RUSH_APPLICATION_OPEN = get_config("RUSH_APPLICATION_OPEN")

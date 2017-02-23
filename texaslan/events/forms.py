@@ -7,7 +7,6 @@ from ..users.models import User
 
 class ConfirmAttendanceForm(forms.Form):
     def confirm_attendance(self):
-        print(self.data)
         event_id = int(self.data['event_id'])
         username = self.data['username']
 

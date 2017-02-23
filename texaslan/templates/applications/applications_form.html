@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block applications_tab %}active{% endblock %}
+
+{% block title %}Application{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Rush Application</h1>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" method="post" action="{% url 'applications:modify' %}">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="fieldWrapper">
+                            {{ field.label_tag }}
+                            {% if field.help_text %}
+                                <p class="help">{{ field.help_text|safe }}</p>
+                            {% endif %}
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" name="save_btn" value="save_btn" class="btn btn-primary">Save</button>
+                            <button type="submit" name="submit_btn" value="submit_btn" class="btn btn-danger">Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
