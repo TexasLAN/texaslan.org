@@ -6,12 +6,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
-from texaslan.utils.utils import MemberRequiredMixin
+from texaslan.utils.utils import MemberRequiredMixin, SelfOrMemberRequiredMixin
 from .forms import UserUpdateForm
 from .models import User
 
 
-class UserDetailView(LoginRequiredMixin, DetailView):
+class UserDetailView(SelfOrMemberRequiredMixin, DetailView):
     model = User
     # These next two lines tell the view to index lookups by username
     slug_field = 'username'
