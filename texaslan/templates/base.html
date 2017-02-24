@@ -17,6 +17,7 @@
 
 
 
+
             {{ request.build_absolute_uri }}{% block open_graph_image %}{% static 'images/mad-logo-banner-color.png' %}{% endblock open_graph_image %}"/>
     <meta property="og:site_name" content="texaslan.com">
     <meta property="og:description"
@@ -77,10 +78,11 @@
                         <li class="{% block applications_list_tab %}{% endblock %} nav-item">
                             <a class="nav-link" href="{% url 'applications:list' %}">Applications</a>
                         </li>
-                    {% endif %}
-                    {% if request.user.is_active_user %}
                         <li class="{% block comments_tab %}{% endblock %} nav-item">
                             <a class="nav-link" href="{% url 'comments:list' %}">Comments</a>
+                        </li>
+                        <li class="{% block voting_tab %}{% endblock %} nav-item">
+                            <a class="nav-link" href="{% url 'voting:list' %}">Voting</a>
                         </li>
                     {% endif %}
                     {% if request.user.is_active_user or request.user.is_officer or request.user.is_alumni %}

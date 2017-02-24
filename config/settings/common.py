@@ -69,6 +69,8 @@ LOCAL_APPS = (
     'texaslan.notify.apps.NotifyConfig',
     'texaslan.comments.apps.CommentsConfig',
     'texaslan.applications.apps.ApplicationsConfig',
+    'texaslan.voting.apps.VotingConfig',
+    'texaslan.site_settings.apps.SiteSettingsConfig'
 )
 
 CLEANUP_APP = (
@@ -271,7 +273,3 @@ SENDGRID_MAILING_LIST_ID = get_config("SENDGRID_MAILING_LIST_ID")
 ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
-
-# LAN GENERAL SETTINGS
-# ------------------------------------------------------------------------------
-RUSH_APPLICATION_OPEN = get_config("RUSH_APPLICATION_OPEN")

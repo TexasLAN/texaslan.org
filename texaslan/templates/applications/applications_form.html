@@ -15,10 +15,7 @@
                     {% csrf_token %}
                     {% for field in form %}
                         <div class="fieldWrapper">
-                            {{ field.label_tag }}
-                            {% if field.help_text %}
-                                <p class="help">{{ field.help_text|safe }}</p>
-                            {% endif %}
+                            <h3>{{ field.help_text|safe }}</h3>
                             {{ field }}
                         </div>
                     {% endfor %}

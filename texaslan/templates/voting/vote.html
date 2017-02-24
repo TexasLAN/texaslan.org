@@ -1,0 +1,28 @@
+{% extends "voting/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Vote{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" method="post" action="{% url 'voting:vote' %}">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="fieldWrapper">
+                            {% if field.help_text %}
+                                <h3>{{ field.help_text|safe }}</h3>
+                            {% endif %}
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

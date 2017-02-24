@@ -1,0 +1,25 @@
+{% extends "voting/base.html" %}
+{% block title %}Applying{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1>
+                    {{ candidate.user.full_name }} for
+                    {{ position }}
+                </h1>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-3">
+                    <div class="thumbnail">
+                        <img src="{{ candidate.user.get_gravatar_image_url }}" class="img-thumbnail"/>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <h5>{{ candidate.description }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "voting/base.html" %}
+{% block title %}Applying{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h1>Applying for {{ position }}</h1>
+                <form class="form-horizontal" method="post" action="{% url 'voting:apply' position_id %}">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="fieldWrapper">
+                            {% if field.help_text %}
+                                <p class="help">{{ field.help_text|safe }}</p>
+                            {% endif %}
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    <input type="hidden" name="position_id" value="{{ position_id }}"/>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

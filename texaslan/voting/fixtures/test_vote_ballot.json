@@ -1,0 +1,488 @@
+[
+  {
+    "model": "voting.VoteBallot",
+    "pk": 0,
+    "fields": {
+      "position": "P",
+      "candidates_json": "[0]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 1,
+    "fields": {
+      "position": "P",
+      "candidates_json": "[0, 1]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 2,
+    "fields": {
+      "position": "P",
+      "candidates_json": "[0, 2]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 3,
+    "fields": {
+      "position": "P",
+      "candidates_json": "[5, 0]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 4,
+    "fields": {
+      "position": "P",
+      "candidates_json": "[5, 0]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 5,
+    "fields": {
+      "position": "P",
+      "candidates_json": "[2, 0, 1]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 6,
+    "fields": {
+      "position": "A",
+      "candidates_json": "[3, 4]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 7,
+    "fields": {
+      "position": "A",
+      "candidates_json": "[3, 4]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 8,
+    "fields": {
+      "position": "A",
+      "candidates_json": "[4]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 9,
+    "fields": {
+      "position": "A",
+      "candidates_json": "[4]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 10,
+    "fields": {
+      "position": "A",
+      "candidates_json": "[4]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 11,
+    "fields": {
+      "position": "A",
+      "candidates_json": "[4]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 12,
+    "fields": {
+      "position": "T",
+      "candidates_json": "[5]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 13,
+    "fields": {
+      "position": "T",
+      "candidates_json": "[5]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 14,
+    "fields": {
+      "position": "T",
+      "candidates_json": "[5]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 15,
+    "fields": {
+      "position": "T",
+      "candidates_json": "[5]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 16,
+    "fields": {
+      "position": "T",
+      "candidates_json": "[5]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 17,
+    "fields": {
+      "position": "T",
+      "candidates_json": "[5]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 18,
+    "fields": {
+      "position": "S",
+      "candidates_json": "[6]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 19,
+    "fields": {
+      "position": "S",
+      "candidates_json": "[6]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 20,
+    "fields": {
+      "position": "S",
+      "candidates_json": "[6]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 21,
+    "fields": {
+      "position": "S",
+      "candidates_json": "[6]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 22,
+    "fields": {
+      "position": "S",
+      "candidates_json": "[6]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 23,
+    "fields": {
+      "position": "S",
+      "candidates_json": "[6]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 24,
+    "fields": {
+      "position": "N",
+      "candidates_json": "[7]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 25,
+    "fields": {
+      "position": "N",
+      "candidates_json": "[7]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 26,
+    "fields": {
+      "position": "N",
+      "candidates_json": "[7]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 27,
+    "fields": {
+      "position": "N",
+      "candidates_json": "[7]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 28,
+    "fields": {
+      "position": "N",
+      "candidates_json": "[7]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 29,
+    "fields": {
+      "position": "N",
+      "candidates_json": "[7]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 30,
+    "fields": {
+      "position": "O",
+      "candidates_json": "[8]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 31,
+    "fields": {
+      "position": "O",
+      "candidates_json": "[8]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 32,
+    "fields": {
+      "position": "O",
+      "candidates_json": "[8]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 33,
+    "fields": {
+      "position": "O",
+      "candidates_json": "[8]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 34,
+    "fields": {
+      "position": "O",
+      "candidates_json": "[8]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 35,
+    "fields": {
+      "position": "O",
+      "candidates_json": "[8]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 36,
+    "fields": {
+      "position": "J",
+      "candidates_json": "[9]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 37,
+    "fields": {
+      "position": "J",
+      "candidates_json": "[9]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 38,
+    "fields": {
+      "position": "J",
+      "candidates_json": "[9]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 39,
+    "fields": {
+      "position": "J",
+      "candidates_json": "[9]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 40,
+    "fields": {
+      "position": "J",
+      "candidates_json": "[9]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 41,
+    "fields": {
+      "position": "J",
+      "candidates_json": "[9]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 42,
+    "fields": {
+      "position": "R",
+      "candidates_json": "[10]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 43,
+    "fields": {
+      "position": "R",
+      "candidates_json": "[10]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 44,
+    "fields": {
+      "position": "R",
+      "candidates_json": "[10]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 45,
+    "fields": {
+      "position": "R",
+      "candidates_json": "[10]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 46,
+    "fields": {
+      "position": "R",
+      "candidates_json": "[10]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 47,
+    "fields": {
+      "position": "R",
+      "candidates_json": "[10]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 48,
+    "fields": {
+      "position": "B",
+      "candidates_json": "[11, 12]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 49,
+    "fields": {
+      "position": "B",
+      "candidates_json": "[11, 12]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 50,
+    "fields": {
+      "position": "B",
+      "candidates_json": "[11, 12]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 51,
+    "fields": {
+      "position": "B",
+      "candidates_json": "[11, 12]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 52,
+    "fields": {
+      "position": "B",
+      "candidates_json": "[11, 12]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.VoteBallot",
+    "pk": 53,
+    "fields": {
+      "position": "B",
+      "candidates_json": "[11, 12]"
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  }
+]

@@ -3,9 +3,9 @@ from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 
-from config.settings.common import RUSH_APPLICATION_OPEN
 from .models import Application, Review
 from texaslan.users.models import User
+from texaslan.site_settings.models import SiteSettingService
 
 
 class ApplicationForm(forms.ModelForm):
@@ -20,7 +20,7 @@ class ApplicationForm(forms.ModelForm):
         if application.is_submitted:
             raise forms.ValidationError("Applications was already submitted")
 
-        if not RUSH_APPLICATION_OPEN:
+        if not SiteSettingService.is_rush_open():
             raise forms.ValidationError("Applications is late")
 
         if 'submit_btn' in self.data:

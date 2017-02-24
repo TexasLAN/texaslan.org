@@ -1,0 +1,145 @@
+[
+  {
+    "model": "voting.Candidate",
+    "pk": 0,
+    "fields": {
+      "position": "P",
+      "user": 0,
+      "description": "asdf",
+      "has_won": false
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.Candidate",
+    "pk": 1,
+    "fields": {
+      "position": "P",
+      "user": 1,
+      "description": "asdf",
+      "has_won": false
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.Candidate",
+    "pk": 2,
+    "fields": {
+      "position": "P",
+      "user": 2,
+      "description": "asdf",
+      "has_won": false
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.Candidate",
+    "pk": 3,
+    "fields": {
+      "position": "A",
+      "user": 0,
+      "description": "asdf",
+      "has_won": false
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.Candidate",
+    "pk": 4,
+    "fields": {
+      "position": "A",
+      "user": 1,
+      "description": "asdf",
+      "has_won": false
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.Candidate",
+    "pk": 5,
+    "fields": {
+      "position": "T",
+      "user": 2,
+      "description": "asdf",
+      "has_won": false
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.Candidate",
+    "pk": 6,
+    "fields": {
+      "position": "S",
+      "user": 3,
+      "description": "asdf",
+      "has_won": false
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.Candidate",
+    "pk": 7,
+    "fields": {
+      "position": "N",
+      "user": 4,
+      "description": "asdf",
+      "has_won": false
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.Candidate",
+    "pk": 8,
+    "fields": {
+      "position": "O",
+      "user": 5,
+      "description": "asdf",
+      "has_won": false
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.Candidate",
+    "pk": 9,
+    "fields": {
+      "position": "J",
+      "user": 6,
+      "description": "asdf",
+      "has_won": false
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.Candidate",
+    "pk": 10,
+    "fields": {
+      "position": "R",
+      "user": 7,
+      "description": "asdf",
+      "has_won": false
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.Candidate",
+    "pk": 11,
+    "fields": {
+      "position": "B",
+      "user": 8,
+      "description": "asdf",
+      "has_won": false
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  },
+  {
+    "model": "voting.Candidate",
+    "pk": 12,
+    "fields": {
+      "position": "B",
+      "user": 9,
+      "description": "asdf",
+      "has_won": false
+    },
+    "created_on": "2017-01-01 01:00+06:00"
+  }
+]

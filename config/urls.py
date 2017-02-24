@@ -24,6 +24,7 @@ urlpatterns = [
                   url(r'^notify/', include('texaslan.notify.urls', namespace='notify')),
                   url(r'^comments/', include('texaslan.comments.urls', namespace='comments')),
                   url(r'^applications/', include('texaslan.applications.urls', namespace='applications')),
+                  url(r'^voting/', include('texaslan.voting.urls', namespace='voting')),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
