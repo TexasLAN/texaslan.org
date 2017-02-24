@@ -7,7 +7,7 @@ from django.forms import ValidationError
 
 from .models import Candidate, VoteBallot, CANDIDATE_POSITIONS, VoteService
 from .forms import StartElectionForm, CreateCandidateApplicationForm, VoteForm
-from texaslan.utils.utils import ActiveRequiredMixin, HasNotAppliedRequiredMixin
+from texaslan.utils.utils import ActiveRequiredMixin, HasNotAppliedRequiredMixin, HasNotVotedRequiredMixin
 from texaslan.site_settings.models import SiteSettingService
 
 
@@ -72,6 +72,7 @@ class CandidateApplyView(HasNotAppliedRequiredMixin, CreateView):
 
 
 class CandidateDetailsView(ActiveRequiredMixin, DetailView):
+    template_name = 'voting/candidate_detail.html'
     model = Candidate
 
     def get_context_data(self, **kwargs):
@@ -85,9 +86,23 @@ class CandidateDetailsView(ActiveRequiredMixin, DetailView):
                                  position=self.kwargs.get('position'), user__username=self.kwargs.get('username'))
 
 
-class VoteView(ActiveRequiredMixin, FormView):
-    template_name = ''
+class VoteView(HasNotVotedRequiredMixin, FormView):
+    template_name = 'voting/vote.html'
     form_class = VoteForm
+
+    def form_invalid(self, form):
+        messages.add_message(self.request, messages.ERROR, form.errors.as_data()['__all__'][0].message)
+        return super(VoteView, self).form_invalid(form)
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.SUCCESS, 'Successfully voted!')
+        return reverse('voting:list')
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.submit_ballot(self.request.user)
+        return super(VoteView, self).form_valid(form)
 
     def get_form_kwargs(self):
         kwargs = super(VoteView, self).get_form_kwargs()
@@ -95,4 +110,5 @@ class VoteView(ActiveRequiredMixin, FormView):
         for (position_id, position) in CANDIDATE_POSITIONS:
             extra.append((position_id, position, set(Candidate.objects.filter(position=position_id)),))
         kwargs['extra'] = extra
+        kwargs['user'] = self.request.user
         return kwargs

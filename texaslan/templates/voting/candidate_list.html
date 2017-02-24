@@ -23,6 +23,20 @@
                     </div>
                 </div>
             {% endif %}
+            {% if voting_open %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Actions</h1>
+                    </div>
+                    <div class="panel-body">
+                        <div class="control-group">
+                            <div class="controls">
+                                <a href="{% url 'voting:vote' %}" class="btn btn-primary">Vote</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
             <div class="panel panel-default">
             <div class="panel-body">
                 <div>

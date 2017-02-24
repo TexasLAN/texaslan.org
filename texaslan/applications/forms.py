@@ -13,7 +13,7 @@ class ApplicationForm(forms.ModelForm):
         model = Application
         fields = ['question_1', 'question_2', 'question_3', 'question_4', 'question_5', 'question_6', 'question_7']
 
-    def clean_question_1(self):
+    def clean(self):
         application = self.save(commit=False)
         # This will validate if forms can be submitted or not
 
@@ -25,8 +25,6 @@ class ApplicationForm(forms.ModelForm):
 
         if 'submit_btn' in self.data:
             application.is_submitted = True
-
-        return self.cleaned_data['question_1']
 
 
 RATING_CHOICES = (

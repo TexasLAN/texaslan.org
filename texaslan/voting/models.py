@@ -6,6 +6,7 @@ from django.conf import settings
 import json
 
 from texaslan.users.models import User
+from texaslan.site_settings.models import SiteSettingService
 
 CANDIDATE_POSITIONS = (
     ("P", "President"),
@@ -72,6 +73,7 @@ class VoteBallot(models.Model):
 class VoteService:
     @staticmethod
     def run_election():
+        SiteSettingService.set_voting_done()
         success = True
         print("Starting Election")
 

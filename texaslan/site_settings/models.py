@@ -72,3 +72,12 @@ class SiteSettingService():
             site_settings = SiteSettings.objects.create()
             site_settings.save()
         return site_settings.voting_status == 'D'
+
+    @staticmethod
+    def set_voting_done():
+        site_settings = SiteSettings.objects.filter(pk__gt=-1)[0]
+        if not site_settings:
+            site_settings = SiteSettings.objects.create()
+            site_settings.save()
+        site_settings.voting_status = 'D'
+        site_settings.save()

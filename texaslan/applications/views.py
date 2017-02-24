@@ -22,7 +22,7 @@ class ApplicationModifyView(OpenRushieRequiredMixin, UpdateView):
         return application
 
     def form_invalid(self, form):
-        messages.add_message(self.request, messages.ERROR, form.errors.as_data()['question_1'][0].message)
+        messages.add_message(self.request, messages.ERROR, form.errors.as_data()['__all__'][0].message)
         return super(ApplicationModifyView, self).form_invalid(form)
 
     def get_success_url(self):

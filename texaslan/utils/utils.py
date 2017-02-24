@@ -3,7 +3,7 @@ from django.contrib.auth.views import redirect_to_login
 from django.core.exceptions import PermissionDenied
 
 from config.settings.common import SENDGRID_API_KEY
-from texaslan.voting.models import Candidate
+from texaslan.voting.models import Candidate, VoteStatus
 from texaslan.site_settings.models import SiteSettingService
 
 import json
@@ -78,6 +78,28 @@ class HasNotAppliedRequiredMixin(UserPassesTestMixin):
         except Candidate.DoesNotExist:
             pass
         return self.request.user.is_active_user() and has_not_applied_yet
+
+    def handle_no_permission(self):
+        if not self.request.user.is_anonymous:
+            raise PermissionDenied(self.get_permission_denied_message())
+        return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
+
+
+class HasNotVotedRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        if self.request.user.is_anonymous:
+            return False
+
+        if not SiteSettingService.is_voting_currently():
+            return False
+
+        has_not_voted_yet = True
+        try:
+            VoteStatus.objects.get(voter__username=self.request.user.username)
+            has_not_voted_yet = False
+        except VoteStatus.DoesNotExist:
+            pass
+        return self.request.user.is_active_user() and has_not_voted_yet
 
     def handle_no_permission(self):
         if not self.request.user.is_anonymous:
