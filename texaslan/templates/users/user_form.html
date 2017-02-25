@@ -20,6 +20,7 @@
     <div class="container">
         <h1>{{ user.username }}</h1>
         <a class="btn btn-primary" href="{% url 'account_email' %}">Update E-Mail</a>
+        <a class="btn btn-primary" href="{% url 'account_change_password' %}">Change Password</a>
         <form class="form-horizontal" method="post" enctype="multipart/form-data" action="{% url 'users:update' %}">
             {% csrf_token %}
             {{ form|crispy }}
