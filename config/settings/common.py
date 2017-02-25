@@ -117,7 +117,7 @@ FIXTURE_DIRS = (
 # ------------------------------------------------------------------------------
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_WEBMASTER = 'drewiswaycool@gmail.com'
-DEFAULT_FROM_EMAIL = 'MAD <noreply@www.texaslan.com>'
+DEFAULT_FROM_EMAIL = 'LAN <noreply@www.texaslan.org>'
 EMAIL_SUBJECT_PREFIX = '[LAN] '
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 

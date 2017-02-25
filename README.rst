@@ -1,8 +1,8 @@
-texaslan.com
+texaslan.org
 =======
 
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
-    :target: https://raw.githubusercontent.com/texaslan/texaslan.com/master/LICENSE
+    :target: https://raw.githubusercontent.com/texaslan/texaslan.org/master/LICENSE
     :alt: MIT Licensed
 
 The main online hub for Texas LAN, built with Django. This project is heavily based on this project here_
@@ -24,7 +24,7 @@ Local Deployment
 Get all the dependencies we'll need to run Django.
 ::
     brew install python3
-    git clone git@github.com:texaslan/texaslan.com.git
+    git clone git@github.com:texaslan/texaslan.org.git
     pip3 install -r requirements/local.txt
 
 Install Postgres app(http://postgresapp.com/) and start Postgres.
@@ -99,7 +99,7 @@ First time
 ^^^^^^^^^^
 Ensure that Python 3.5 and Postgres are installed, then run the below.
 ::
-    git clone git@github.com:texaslan/texaslan.com.git
+    git clone git@github.com:texaslan/texaslan.org.git
     pip3 install -r requirements/production.txt
     npm install
     npm install --global gulp-cli
