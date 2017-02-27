@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.views.generic import ListView, CreateView, DetailView, FormView
 from django.forms import ValidationError
 
-from .models import Candidate, VoteBallot, CANDIDATE_POSITIONS, VoteService
+from .models import Candidate, VoteBallot, CANDIDATE_POSITIONS, VoteService, VoteStatus
 from .forms import StartElectionForm, CreateCandidateApplicationForm, VoteForm
 from texaslan.utils.utils import ActiveRequiredMixin, HasNotAppliedRequiredMixin, HasNotVotedRequiredMixin
 from texaslan.site_settings.models import SiteSettingService
@@ -23,6 +23,13 @@ class CandidateListView(ActiveRequiredMixin, FormView):
             return context
 
         context['voting_open'] = SiteSettingService.is_voting_currently()
+
+        context['has_not_voted'] = True
+        try:
+            VoteStatus.objects.get(voter__username=self.request.user.username)
+            context['has_not_voted'] = False
+        except VoteStatus.DoesNotExist:
+            pass
 
         positions_list = []
         for (position_code, position_name) in CANDIDATE_POSITIONS:
