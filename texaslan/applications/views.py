@@ -56,7 +56,7 @@ class ApplicationDetailView(ActiveRequiredMixin, FormView):
         context = super(ApplicationDetailView, self).get_context_data(**kwargs)
         app_id = int(self.kwargs.get("id"))
         context['application'] = get_object_or_404(Application, pk=app_id)
-        context['user'] = context['application'].applicant_user
+        context['rushie'] = context['application'].applicant_user
 
         reviews = Review.objects.filter(application__pk=app_id)
         avg_rating_total = 0
@@ -71,7 +71,7 @@ class ApplicationDetailView(ActiveRequiredMixin, FormView):
             context['avg_rating'] = "-"
         context['reviews'] = reviews
 
-        context['events'] = list(context['user'].event_attendees.all())
+        context['events'] = list(context['rushie'].event_attendees.all())
         print(context['events'])
         return context
 
