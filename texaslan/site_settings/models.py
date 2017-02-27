@@ -26,58 +26,41 @@ class SiteSettings(models.Model):
 
 class SiteSettingService():
     @staticmethod
-    def is_rush_open():
-        site_settings = SiteSettings.objects.filter(pk__gt=-1)[0]
-        if not site_settings:
+    def get_site_settings():
+        site_settings_list = list(SiteSettings.objects.filter(pk__gt=-1))
+        if not site_settings_list:
             site_settings = SiteSettings.objects.create()
             site_settings.save()
-        return site_settings.is_rush_open
+            site_settings_list.append(site_settings)
+        else:
+            site_settings = site_settings_list[0]
+        return site_settings
+
+    @staticmethod
+    def is_rush_open():
+        return SiteSettingService.get_site_settings().is_rush_open
 
     @staticmethod
     def is_voting_closed():
-        site_settings = SiteSettings.objects.filter(pk__gt=-1)[0]
-        if not site_settings:
-            site_settings = SiteSettings.objects.create()
-            site_settings.save()
-        return site_settings.voting_status == 'C'
+        return SiteSettingService.get_site_settings().voting_status == 'C'
 
     @staticmethod
     def is_voting_applications_open():
-        site_settings = SiteSettings.objects.filter(pk__gt=-1)[0]
-        if not site_settings:
-            site_settings = SiteSettings.objects.create()
-            site_settings.save()
-        return site_settings.voting_status == 'A'
+        return SiteSettingService.get_site_settings().voting_status == 'A'
 
     @staticmethod
     def is_voting_application_closed():
-        site_settings = SiteSettings.objects.filter(pk__gt=-1)[0]
-        if not site_settings:
-            site_settings = SiteSettings.objects.create()
-            site_settings.save()
-        return site_settings.voting_status == 'X'
+        return SiteSettingService.get_site_settings().voting_status == 'X'
 
     @staticmethod
     def is_voting_currently():
-        site_settings = SiteSettings.objects.filter(pk__gt=-1)[0]
-        if not site_settings:
-            site_settings = SiteSettings.objects.create()
-            site_settings.save()
-        return site_settings.voting_status == 'V'
+        return SiteSettingService.get_site_settings().voting_status == 'V'
 
     @staticmethod
     def is_voting_done():
-        site_settings = SiteSettings.objects.filter(pk__gt=-1)[0]
-        if not site_settings:
-            site_settings = SiteSettings.objects.create()
-            site_settings.save()
-        return site_settings.voting_status == 'D'
+        return SiteSettingService.get_site_settings().voting_status == 'D'
 
     @staticmethod
     def set_voting_done():
-        site_settings = SiteSettings.objects.filter(pk__gt=-1)[0]
-        if not site_settings:
-            site_settings = SiteSettings.objects.create()
-            site_settings.save()
-        site_settings.voting_status = 'D'
-        site_settings.save()
+        SiteSettingService.get_site_settings().voting_status = 'D'
+        SiteSettingService.get_site_settings().save()
