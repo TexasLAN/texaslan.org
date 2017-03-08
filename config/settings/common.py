@@ -248,7 +248,6 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_FORM_CLASS = 'texaslan.users.forms.UserSignupForm'
 
-ACCOUNT_ALLOW_REGISTRATION = get_config('ALLOW_REGISTRATION')
 ACCOUNT_ADAPTER = 'texaslan.users.adapters.AccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'texaslan.users.adapters.SocialAccountAdapter'
 

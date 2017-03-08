@@ -31,8 +31,8 @@ class UserSignupForm(forms.ModelForm):
         open_rush_group.user_set.add(user)
         open_rush_group.save()
 
-        (application, created) = Application.objects.get_or_create(applicant_user__pk=self.request.user.id)
-        application.applicant_user = self.request.user
+        (application, created) = Application.objects.get_or_create(applicant_user__pk=user.pk)
+        application.applicant_user = user
         application.save()
 
 

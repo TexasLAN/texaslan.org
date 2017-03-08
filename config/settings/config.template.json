@@ -6,7 +6,6 @@
 
   "ALLOWED_HOSTS": ["www.exampleurl.com"],
   "DEBUG": true,
-  "ALLOW_REGISTRATION": true,
 
   "SECURE_HSTS_INCLUDE_SUBDOMAINS": true,
   "SECURE_CONTENT_TYPE_NOSNIFF": true,
