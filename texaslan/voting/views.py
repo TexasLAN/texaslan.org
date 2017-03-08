@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.views.generic import ListView, CreateView, DetailView, FormView
 from django.forms import ValidationError
 
-from .models import Candidate, VoteBallot, CANDIDATE_POSITIONS, VoteService, VoteStatus
+from .models import Candidate, VoteBallot, CANDIDATE_POSITIONS, VoteService, VoteStatus, POSITION_NUMS
 from .forms import StartElectionForm, CreateCandidateApplicationForm, VoteForm
 from texaslan.utils.utils import ActiveRequiredMixin, HasNotAppliedRequiredMixin, HasNotVotedRequiredMixin
 from texaslan.site_settings.models import SiteSettingService
@@ -115,6 +115,9 @@ class VoteView(HasNotVotedRequiredMixin, FormView):
         kwargs = super(VoteView, self).get_form_kwargs()
         extra = []
         for (position_id, position) in CANDIDATE_POSITIONS:
+            # If we have all our winners, no need to fill this out.
+            if len(set(Candidate.objects.filter(position=position_id, has_won=True))) == POSITION_NUMS[position_id]:
+                continue
             extra.append((position_id, position, set(Candidate.objects.filter(position=position_id)),))
         kwargs['extra'] = extra
         kwargs['user'] = self.request.user

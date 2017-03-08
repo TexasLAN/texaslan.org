@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 import json
 
-from .models import Candidate, VoteService, VoteStatus, CANDIDATE_POSITIONS, VoteBallot
+from .models import Candidate, VoteService, VoteStatus, CANDIDATE_POSITIONS, VoteBallot, POSITION_NUMS
 from texaslan.site_settings.models import SiteSettingService
 
 
@@ -47,6 +47,11 @@ class VoteForm(forms.Form):
 
         # Check if inputs are valid
         for (position_id, position_str) in CANDIDATE_POSITIONS:
+            num_win_candidates = len(Candidate.objects.filter(position=position_id, has_won=True))
+            # If we have all our winners, no need to fill this out.
+            if num_win_candidates == POSITION_NUMS[position_id]:
+                continue
+
             num_position_cand = len(Candidate.objects.filter(position=position_id))
             candidate_position_set = set()
             has_voted_none = False
@@ -70,7 +75,16 @@ class VoteForm(forms.Form):
         status.save()
 
         for (position_id, position_str) in CANDIDATE_POSITIONS:
+            num_win_candidates = len(Candidate.objects.filter(position=position_id, has_won=True))
+            # If we have all our winners, no need to fill this out.
+            if num_win_candidates == POSITION_NUMS[position_id]:
+                continue
+
             num_position_cand = len(Candidate.objects.filter(position=position_id))
+            # Special Election, only run election for specific candidates
+            # Assume data is valid and correct
+            if num_position_cand == 0:
+                continue
             candidate_position_list = []
 
             for i in range(num_position_cand):

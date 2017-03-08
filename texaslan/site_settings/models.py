@@ -61,6 +61,13 @@ class SiteSettingService():
         return SiteSettingService.get_site_settings().voting_status == 'D'
 
     @staticmethod
+    def set_voting_applications_open():
+        site_setting = SiteSettingService.get_site_settings()
+        site_setting.voting_status = 'A'
+        site_setting.save()
+
+    @staticmethod
     def set_voting_done():
-        SiteSettingService.get_site_settings().voting_status = 'D'
-        SiteSettingService.get_site_settings().save()
+        site_setting = SiteSettingService.get_site_settings()
+        site_setting.voting_status = 'D'
+        site_setting.save()

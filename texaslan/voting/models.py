@@ -77,6 +77,12 @@ class VoteService:
         success = True
 
         for (position_id, position_str) in CANDIDATE_POSITIONS:
+            # Special Election, only run election for specific candidates
+            # Assume data is valid and correct
+            num_candidates_for_position = len(Candidate.objects.filter(position=position_id))
+            if num_candidates_for_position == 0:
+                continue
+
             positions_won = len(Candidate.objects.filter(position=position_id, has_won=True))
             while positions_won < POSITION_NUMS[position_id]:
                 winning_candidate = VoteService.get_winner_for_position(position_id)
@@ -96,6 +102,14 @@ class VoteService:
 
             if not success:
                 break
+
+        # Clean up the election state
+        VoteBallot.objects.all().delete()
+        if not success:
+            SiteSettingService.set_voting_applications_open()
+            for vote_status in VoteStatus.objects.all():
+                vote_status.has_voted = False
+                vote_status.save()
 
         return success
 
