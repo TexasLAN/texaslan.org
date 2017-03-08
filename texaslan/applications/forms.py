@@ -37,25 +37,35 @@ RATING_CHOICES = (
 
 
 class ReviewForm(forms.ModelForm):
+    is_anon_comment = forms.BooleanField(label="Is anonymous comment?", required=False)
+
     class Meta:
         model = Review
         fields = ['comment', 'rating']
 
     def modify_review(self):
-        application_id = int(self.data['application_id'])
-        username = self.data['review_username']
-        comment = self.cleaned_data['comment']
-        rating = self.cleaned_data['rating']
+        print(self.data)
+        if "is_anon_comment" not in self.data or self.data["is_anon_comment"] == 'off':
+            application_id = int(self.data['application_id'])
+            username = self.data['review_username']
+            comment = self.cleaned_data['comment']
+            rating = self.cleaned_data['rating']
 
-        application = get_object_or_404(Application, pk=application_id)
-        reviewer = get_object_or_404(User, username=username)
-        try:
-            review = Review.objects.get(application__pk=application_id, reviewer_user__pk=reviewer.pk)
-        except Review.DoesNotExist:
-            review = Review.objects.create()
-        review.rating = rating
-        review.comment = comment
-        review.application = application
-        review.reviewer_user = reviewer
-        review.save()
+            application = get_object_or_404(Application, pk=application_id)
+            reviewer = get_object_or_404(User, username=username)
+            try:
+                review = Review.objects.get(application__pk=application_id, reviewer_user__pk=reviewer.pk)
+            except Review.DoesNotExist:
+                review = Review.objects.create()
+            review.rating = rating
+            review.comment = comment
+            review.application = application
+            review.reviewer_user = reviewer
+            review.save()
+        else:
+            anon_review = Review.objects.create()
+            anon_review.rating = None
+            anon_review.comment = self.cleaned_data['comment']
+            anon_review.application = get_object_or_404(Application, pk=int(self.data['application_id']))
+            anon_review.save()
         pass

@@ -23,18 +23,22 @@
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Submitted</th>
                         <th>Reviewed</th>
+                        <th>Avg Board Rating</th>
+                        <th>Avg Rating</th>
                     </tr>
                     </thead>
-                    {% for application, reviewed in application_list %}
+                    {% for application, reviewed, avg_rating, board_avg_rating in application_list %}
                         <tr>
                             <td>
                                 <a href="{% url 'applications:detail' application.id %}">{{ application.applicant_user.full_name }}</a>
                             </td>
                             <td>{{ application.applicant_user.email }}</td>
-                            <td>
-                                {% if reviewed %}✔{% endif %}
-                            </td>
+                            <td>{% if application.is_submitted %}✔{% endif %}</td>
+                            <td>{% if reviewed %}✔{% endif %}</td>
+                            <td>{{ board_avg_rating }}</td>
+                            <td>{{ avg_rating }}</td>
                         </tr>
                     {% endfor %}
                 </table>

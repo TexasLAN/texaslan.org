@@ -38,13 +38,38 @@ class ApplicationListView(ActiveRequiredMixin, TemplateView):
 
         application_list = Application.objects.all()
         review_list = []
+        avg_rating_list = []
+        board_avg_rating_list = []
         for application in application_list:
+            reviews = Review.objects.filter(application__pk=application.pk)
+            avg_rating_total = 0
+            avg_rating_count = 0
+            board_avg_rating_total = 0
+            board_avg_rating_count = 0
+            for review in reviews:
+                if review.rating is None:
+                    continue
+                avg_rating_count += 1
+                avg_rating_total += review.rating
+                if review.reviewer_user.is_board():
+                    board_avg_rating_count += 1
+                    board_avg_rating_total += review.rating
+
+            if avg_rating_count != 0:
+                avg_rating_list.append("{0:.2f}".format(avg_rating_total / avg_rating_count))
+            else:
+                avg_rating_list.append("-")
+
+            if board_avg_rating_count != 0:
+                board_avg_rating_list.append("{0:.2f}".format(board_avg_rating_total / board_avg_rating_count))
+            else:
+                board_avg_rating_list.append("-")
             try:
                 Review.objects.get(application__pk=application.pk, reviewer_user__pk=self.request.user.pk)
                 review_list.append(True)
             except Review.DoesNotExist:
                 review_list.append(False)
-        context['application_list'] = zip(Application.objects.all(), review_list)
+        context['application_list'] = zip(application_list, review_list, avg_rating_list, board_avg_rating_list)
         return context
 
 
@@ -64,6 +89,8 @@ class ApplicationDetailView(ActiveRequiredMixin, FormView):
         board_avg_rating_total = 0
         board_avg_rating_count = 0
         for review in reviews:
+            if review.rating is None:
+                continue
             avg_rating_count += 1
             avg_rating_total += review.rating
             if review.reviewer_user.is_board():

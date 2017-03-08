@@ -68,16 +68,17 @@
             <div class="panel-body">
                 <form class="form-horizontal" method="post" action="{% url 'applications:detail' application.id %}">
                     {% csrf_token %}
-                    <div class="fieldWrapper">
-                        {{ form.comment.errors }}
-                        {{ form.comment.label_tag }}
-                        {{ form.comment }}
-                    </div>
-                    <div class="fieldWrapper">
-                        {{ form.rating.errors }}
-                        {{ form.rating.label_tag }}
-                        {{ form.rating }}
-                    </div>
+                    {#                    <div class="fieldWrapper">#}
+                    {#                        {{ form.comment.errors }}#}
+                    {#                        {{ form.comment.label_tag }}#}
+                    {#                        {{ form.comment }}#}
+                    {#                    </div>#}
+                    {#                    <div class="fieldWrapper">#}
+                    {#                        {{ form.rating.errors }}#}
+                    {#                        {{ form.rating.label_tag }}#}
+                    {#                        {{ form.rating }}#}
+                    {#                    </div>#}
+                    {{ form|crispy }}
                     <input type="hidden" name="application_id" value="{{ application.id }}"/>
                     <input type="hidden" name="review_username" value="{{ request.user.username }}"/>
                     <div class="control-group">
@@ -114,6 +115,10 @@
                         <a href="#feedback" aria-controls="profile" role="tab" data-toggle="tab">Member Feedback</a>
                     </li>
                     <li role="presentation">
+                        <a href="#anon_feedback" aria-controls="profile" role="tab" data-toggle="tab">Anonymous
+                            Feedback</a>
+                    </li>
+                    <li role="presentation">
                         <a href="#events" aria-controls="profile" role="tab" data-toggle="tab">Events Attended</a>
                     </li>
                 </ul>
@@ -123,7 +128,7 @@
                 <div role="tabpanel" class="tab-pane active" id="reviews">
                     <ul class="list-group">
                         {% for review in reviews %}
-                            {% if review.reviewer_user.is_board %}
+                            {% if review.reviewer_user and review.reviewer_user.is_board %}
                                 <li class="list-group-item">
                                     <h4>{{ review.reviewer_user.full_name }}</h4>
                                     <p>{{ review.comment }}</p>
@@ -134,9 +139,18 @@
                 </div>
                 <div role="tabpanel" class="tab-pane" id="feedback">
                     {% for review in reviews %}
-                        {% if not review.reviewer_user.is_board %}
+                        {% if review.reviewer_user and not review.reviewer_user.is_board %}
                             <li class="list-group-item">
                                 <h4>{{ review.reviewer_user.full_name }}</h4>
+                                <p>{{ review.comment }}</p>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="anon_feedback">
+                    {% for review in reviews %}
+                        {% if not review.reviewer_user %}
+                            <li class="list-group-item">
                                 <p>{{ review.comment }}</p>
                             </li>
                         {% endif %}
