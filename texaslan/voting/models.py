@@ -56,7 +56,7 @@ class VoteStatus(models.Model):
 
     voter = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="vote_status",
                               verbose_name=_("Voter"))
-    has_voted = models.BooleanField(_("Has Voted"), default=True)
+    has_voted = models.BooleanField(_("Has Voted"), default=False)
 
     def __str__(self):
         return self.voter.full_name
@@ -75,10 +75,8 @@ class VoteService:
     def run_election():
         SiteSettingService.set_voting_done()
         success = True
-        print("Starting Election")
 
         for (position_id, position_str) in CANDIDATE_POSITIONS:
-            print("Starting " + position_str)
             positions_won = len(Candidate.objects.filter(position=position_id, has_won=True))
             while positions_won < POSITION_NUMS[position_id]:
                 winning_candidate = VoteService.get_winner_for_position(position_id)
@@ -91,10 +89,6 @@ class VoteService:
                     winning_candidate.save()
                     if positions_won == POSITION_NUMS[position_id]:
                         VoteBallot.objects.filter(position=position_id).delete()
-                    print("delete these candidates: " + str([cand.user.username for cand in
-                                                             Candidate.objects.filter(
-                                                                 user__pk=winning_candidate.user.pk,
-                                                                 has_won=False)]))
                     Candidate.objects.filter(user__pk=winning_candidate.user.pk, has_won=False).delete()
                 else:
                     success = False
@@ -105,6 +99,7 @@ class VoteService:
 
         return success
 
+    # Private method for run_election()
     @staticmethod
     def get_winner_for_position(position_id):
         candidates = set(Candidate.objects.filter(position=position_id, has_won=False))

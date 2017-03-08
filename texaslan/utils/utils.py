@@ -95,10 +95,11 @@ class HasNotVotedRequiredMixin(UserPassesTestMixin):
 
         has_not_voted_yet = True
         try:
-            VoteStatus.objects.get(voter__username=self.request.user.username)
-            has_not_voted_yet = False
+            vote_status = VoteStatus.objects.get(voter__username=self.request.user.username)
+            has_not_voted_yet = not vote_status.has_voted
         except VoteStatus.DoesNotExist:
-            pass
+            # Not allowed to vote
+            return False
         return self.request.user.is_active_user() and has_not_voted_yet
 
     def handle_no_permission(self):

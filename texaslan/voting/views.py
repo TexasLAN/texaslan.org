@@ -26,8 +26,8 @@ class CandidateListView(ActiveRequiredMixin, FormView):
 
         context['has_not_voted'] = True
         try:
-            VoteStatus.objects.get(voter__username=self.request.user.username)
-            context['has_not_voted'] = False
+            vote_status = VoteStatus.objects.get(voter__username=self.request.user.username)
+            context['has_not_voted'] = not vote_status.has_voted
         except VoteStatus.DoesNotExist:
             pass
 

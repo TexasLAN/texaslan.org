@@ -42,7 +42,7 @@ class VoteForm(forms.Form):
 
         # Check if user hasn't already voted
         vote_status_query = VoteStatus.objects.filter(voter__username=self.user.username)
-        if len(vote_status_query) != 0:
+        if len(vote_status_query) != 0 and vote_status_query[0].has_voted:
             raise forms.ValidationError("You have already voted!")
 
         # Check if inputs are valid
@@ -64,7 +64,9 @@ class VoteForm(forms.Form):
         return self.cleaned_data
 
     def submit_ballot(self, user):
-        status = VoteStatus.objects.create(voter=user, has_voted=True)
+        vote_status_query = VoteStatus.objects.filter(voter__username=self.user.username)
+        status = vote_status_query[0]
+        status.has_voted = True
         status.save()
 
         for (position_id, position_str) in CANDIDATE_POSITIONS:
