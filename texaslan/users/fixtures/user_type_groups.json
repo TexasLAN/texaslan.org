@@ -38,12 +38,19 @@
     "model": "auth.group",
     "pk": 5,
     "fields": {
-      "name": "Inactive"
+      "name": "Board"
     }
   },
   {
     "model": "auth.group",
     "pk": 6,
+    "fields": {
+      "name": "Inactive"
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 7,
     "fields": {
       "name": "Alumni"
     }

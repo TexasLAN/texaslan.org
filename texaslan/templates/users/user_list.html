@@ -46,6 +46,11 @@
                         </a>
                     </li>
                     <li role="presentation">
+                        <a href="#board" aria-controls="profile" role="tab" data-toggle="tab">
+                            Board
+                        </a>
+                    </li>
+                    <li role="presentation">
                         <a href="#inactive" aria-controls="profile" role="tab" data-toggle="tab">
                             Inactive
                         </a>
@@ -158,6 +163,24 @@
                         </thead>
                         {% for user in user_list %}
                             {% if user.is_officer %}
+                                <tr>
+                                    <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="board">
+                    <table class="table table-bordered table-striped sortable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        {% for user in user_list %}
+                            {% if user.is_board %}
                                 <tr>
                                     <td><a href="{% url 'users:detail' user.username %}">{{ user.full_name }}</a></td>
                                     <td>{{ user.email }}</td>

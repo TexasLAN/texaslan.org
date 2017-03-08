@@ -73,7 +73,7 @@
                         {{ form.comment.label_tag }}
                         {{ form.comment }}
                     </div>
-                    <div class="fieldWrapper" {% if not request.user.is_officer %}hidden{% endif %}>
+                    <div class="fieldWrapper">
                         {{ form.rating.errors }}
                         {{ form.rating.label_tag }}
                         {{ form.rating }}
@@ -86,6 +86,14 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Average Board Officer Rating</h1>
+            </div>
+            <div class="panel-body">
+                <h1 class="text-center">{{ board_avg_rating }} / 5.00</h1>
             </div>
         </div>
         <div class="panel panel-default">
@@ -115,7 +123,7 @@
                 <div role="tabpanel" class="tab-pane active" id="reviews">
                     <ul class="list-group">
                         {% for review in reviews %}
-                            {% if review.reviewer_user.is_officer %}
+                            {% if review.reviewer_user.is_board %}
                                 <li class="list-group-item">
                                     <h4>{{ review.reviewer_user.full_name }}</h4>
                                     <p>{{ review.comment }}</p>
@@ -126,7 +134,7 @@
                 </div>
                 <div role="tabpanel" class="tab-pane" id="feedback">
                     {% for review in reviews %}
-                        {% if not review.reviewer_user.is_officer %}
+                        {% if not review.reviewer_user.is_board %}
                             <li class="list-group-item">
                                 <h4>{{ review.reviewer_user.full_name }}</h4>
                                 <p>{{ review.comment }}</p>

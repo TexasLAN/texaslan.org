@@ -16,8 +16,9 @@ class NotifyForm(forms.Form):
         (4, _("Pledge")),
         (5, _("Active")),
         (6, _("Officer")),
-        (7, _("Inactive")),
-        (8, _("Alumni"))
+        (7, _("Board")),
+        (8, _("Inactive")),
+        (9, _("Alumni"))
     ))
     subject = forms.CharField()
     message = forms.CharField(widget=forms.Textarea)
@@ -39,8 +40,10 @@ class NotifyForm(forms.Form):
         elif list_option == 6:
             email_to = UserService.get_officer_users_emails()
         elif list_option == 7:
-            email_to = UserService.get_inactive_users_emails()
+            email_to = UserService.get_board_users_emails()
         elif list_option == 8:
+            email_to = UserService.get_inactive_users_emails()
+        elif list_option == 9:
             email_to = UserService.get_alumni_users_emails()
         else:
             email_to = [EMAIL_WEBMASTER]

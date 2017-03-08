@@ -38,7 +38,7 @@ RATING_CHOICES = (
 
 class Review(models.Model):
     comment = models.TextField(_("Comment"), null=True, blank=True)
-    rating = models.SmallIntegerField(_("Rating"), null=True, blank=True, choices=RATING_CHOICES)
+    rating = models.SmallIntegerField(_("Rating"), default=3, choices=RATING_CHOICES)
     application = models.ForeignKey(Application, null=True, related_name="application",
                                     verbose_name=_("Application"))
     reviewer_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name="reviewer_user",

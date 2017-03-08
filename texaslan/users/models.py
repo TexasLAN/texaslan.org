@@ -86,6 +86,9 @@ class User(AbstractUser):
     def is_officer(self):
         return self.groups.filter(name="Officer").exists()
 
+    def is_board(self):
+        return self.groups.filter(name="Board").exists()
+
     def is_inactive(self):
         return self.groups.filter(name="Inactive").exists()
 
@@ -121,6 +124,10 @@ class UserService:
         return [user for user in User.objects.all() if user.is_officer()]
 
     @staticmethod
+    def get_board_users():
+        return [user for user in User.objects.all() if user.is_board()]
+
+    @staticmethod
     def get_inactive_users():
         return [user for user in User.objects.all() if user.is_inactive()]
 
@@ -153,6 +160,10 @@ class UserService:
     @staticmethod
     def get_officer_users_emails():
         return [user.email for user in UserService.get_officer_users()]
+
+    @staticmethod
+    def get_board_users_emails():
+        return [user.email for user in UserService.get_board_users()]
 
     @staticmethod
     def get_inactive_users_emails():

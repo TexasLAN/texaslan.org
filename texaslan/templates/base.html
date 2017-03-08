@@ -85,7 +85,7 @@
                             <a class="nav-link" href="{% url 'voting:list' %}">Voting</a>
                         </li>
                     {% endif %}
-                    {% if request.user.is_active_user or request.user.is_officer or request.user.is_alumni %}
+                    {% if request.user.is_active_user or request.user.is_alumni %}
                         <li class="{% block members_tab %}{% endblock %} nav-item">
                             <a class="nav-link" href="{% url 'users:list' %}">Members</a>
                         </li>

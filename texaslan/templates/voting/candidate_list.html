@@ -5,10 +5,10 @@
 {% block content %}
     <div class="container">
         {% if not voting_closed %}
-            {% if request.user.is_officer and voting_open %}
+            {% if request.user.is_board and voting_open %}
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h1 class="panel-title">Officer Panel</h1>
+                        <h1 class="panel-title">Board Officer Panel</h1>
                     </div>
                     <div class="panel-body">
                         <form class="form-horizontal" method="post" action="{% url 'voting:list' %}">
