@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, render
 from django.utils.safestring import mark_safe
 from django.views.generic import DetailView, ListView, FormView
 
-from texaslan.utils.utils import OfficerRequiredMixin
+from texaslan.utils.utils import OfficerRequiredMixin, EventPermissionsRequiredMixin
 from .forms import ConfirmAttendanceForm
 from .models import Event, EventCalendar, EventTag
 from ..users.models import User
@@ -58,7 +58,7 @@ def calendar(request, year=datetime.datetime.now().year, month=datetime.datetime
     return render(request, 'events/event_calendar.html', context=data)
 
 
-class EventDetailView(DetailView):
+class EventDetailView(EventPermissionsRequiredMixin, DetailView):
     model = Event
     slug_field = 'id'
     slug_url_kwarg = 'id'

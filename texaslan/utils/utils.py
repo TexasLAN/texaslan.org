@@ -3,6 +3,7 @@ from django.contrib.auth.views import redirect_to_login
 from django.core.exceptions import PermissionDenied
 
 from config.settings.common import SENDGRID_API_KEY
+from texaslan.events.models import Event, EventTag
 from texaslan.voting.models import Candidate, VoteStatus
 from texaslan.site_settings.models import SiteSettingService
 
@@ -56,6 +57,28 @@ class MemberRequiredMixin(UserPassesTestMixin):
     def test_func(self):
         return not self.request.user.is_anonymous and (
             self.request.user.is_active_user() or self.request.user.is_alumni())
+
+    def handle_no_permission(self):
+        if not self.request.user.is_anonymous:
+            raise PermissionDenied(self.get_permission_denied_message())
+        return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
+
+
+class EventPermissionsRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        try:
+            event = Event.objects.get(id=self.kwargs.get("id"))
+        except Event.DoesNotExist:
+            return False
+
+        user = self.request.user
+
+        if user.is_anonymous or user.is_open_rushie():
+            return event.is_open_rush_safe()
+        elif user.is_closed_rushie():
+            return event.is_closed_rush_safe()
+        else:
+            return True
 
     def handle_no_permission(self):
         if not self.request.user.is_anonymous:

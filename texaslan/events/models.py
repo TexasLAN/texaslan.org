@@ -45,7 +45,7 @@ class Event(models.Model):
         return self.event_tags.filter(name="Open Rush").exists()
 
     def is_closed_rush_safe(self):
-        return self.event_tags.filter(name="Closed Rush").exists()
+        return self.event_tags.filter(name="Open Rush").exists() or self.event_tags.filter(name="Closed Rush").exists()
 
     def is_member_and_pledge_safe(self):
         return True
