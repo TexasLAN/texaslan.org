@@ -46,8 +46,10 @@ In ``config/settings``, lename ``config.template.json`` to ``config.json``. The 
 
 Several run configurations are available. Check ``gulpfile.js`` for more details.
 ::
-    # Runs all build steps, then launches the site
-    gulp run
+    # Runs all build steps
+    gulp
+    # Runs the server
+    python3 manage.py runserver
 
 Use ``gulp watch`` to automatically recompile any assets you modify in the background while you work.
 
@@ -57,6 +59,8 @@ Importing test data and users
 Each app includes fixtures_. Load them with
 ::
     python manage.py loaddata <fixture-name>
+
+Required fixtures for the website to be properly running are the Event Tag fixtures, and the User Type Groups fixtures.
 
 .. _fixtures: https://docs.djangoproject.com/en/1.10/howto/initial-data/
 
@@ -83,10 +87,6 @@ Manually manipulating data
 
 To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. In the local environment, check your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
 
-To create an **superuser account**
-::
-    python manage.py createsuperuser
-
 To mark an existing account as superuser and staff
 ::
     psql texaslan
@@ -110,7 +110,9 @@ Install a `Django stack`_ on a DigitalOcean Droplet. You will need more than the
 
 .. _Django stack: https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04
 
-Get SSL certificates from `Let's Encrypt`_, and configure Nginx to serve them.
+Get SSL certificates from `Let's Encrypt`_, and configure Nginx to serve them. You can follow this `tutorial`_ on how to implement this on this Django stack.
+
+.. _tutorial: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04
 
 .. _Let's Encrypt: https://letsencrypt.org/
 
@@ -118,7 +120,7 @@ Rename ``config.template.json`` to ``config.json`` in ``config/settings``. The D
 
 Updates
 ^^^^^^^
-The MAD server is configured with an ``updatelan`` command, which is an alias for the below.
+The LAN server is configured with an ``updatelan`` command, which is an alias for the below.
 ::
     # Update and use master ( not pull, to enforce using whatever is on master )
     git fetch
