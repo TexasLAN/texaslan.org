@@ -58,8 +58,10 @@
                 </span>
                 <h5>Creator: </h5>
                 <p>{{ object.creator.full_name }}</p>
-                <h5>Description: </h5>
-                <p>{{ object.description }}</p>
+                {% if not object.is_gm_or_om or request.user.is_active %}
+                    <h5>Description: </h5>
+                    <p>{{ object.description }}</p>
+                {% endif %}
                 <h5>Attendees: </h5>
                 <p>{{ object.attendees.all|length }}</p>
                 {% if request.user.is_staff %}

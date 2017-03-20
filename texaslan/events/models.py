@@ -11,8 +11,10 @@ from django.utils.translation import ugettext_lazy as _
 
 class EventTag(models.Model):
     name = models.CharField(_("Name"), max_length=255, null=False, blank=False, unique=True)
+
     def __str__(self):
         return self.name
+
 
 class Event(models.Model):
     start_time = models.DateTimeField(_("Start Time"))
@@ -34,6 +36,10 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+
+    def is_gm_or_om(self):
+        return self.event_tags.filter(name="General Meeting").exists() or self.event_tags.filter(
+            name="Officer Meeting").exists()
 
     def is_open_rush_safe(self):
         return self.event_tags.filter(name="Open Rush").exists()
