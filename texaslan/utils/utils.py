@@ -109,7 +109,7 @@ class HasNotAppliedRequiredMixin(UserPassesTestMixin):
             has_not_applied_yet = False
         except Candidate.DoesNotExist:
             pass
-        return self.request.user.is_active_user() and has_not_applied_yet
+        return (self.request.user.is_pledge() or self.request.user.is_active_user()) and has_not_applied_yet
 
     def handle_no_permission(self):
         if not self.request.user.is_anonymous:
