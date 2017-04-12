@@ -7,11 +7,11 @@ from django.forms import ValidationError
 
 from .models import Candidate, VoteBallot, CANDIDATE_POSITIONS, VoteService, VoteStatus, POSITION_NUMS
 from .forms import StartElectionForm, CreateCandidateApplicationForm, VoteForm
-from texaslan.utils.utils import ActiveRequiredMixin, HasNotAppliedRequiredMixin, HasNotVotedRequiredMixin
+from texaslan.utils.utils import PledgeOrActiveRequiredMixin, HasNotAppliedRequiredMixin, HasNotVotedRequiredMixin
 from texaslan.site_settings.models import SiteSettingService
 
 
-class CandidateListView(ActiveRequiredMixin, FormView):
+class CandidateListView(PledgeOrActiveRequiredMixin, FormView):
     template_name = 'voting/candidate_list.html'
     form_class = StartElectionForm
 
@@ -78,7 +78,7 @@ class CandidateApplyView(HasNotAppliedRequiredMixin, CreateView):
         return reverse('voting:list')
 
 
-class CandidateDetailsView(ActiveRequiredMixin, DetailView):
+class CandidateDetailsView(PledgeOrActiveRequiredMixin, DetailView):
     template_name = 'voting/candidate_detail.html'
     model = Candidate
 
