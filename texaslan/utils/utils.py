@@ -30,6 +30,15 @@ class ActiveRequiredMixin(UserPassesTestMixin):
             raise PermissionDenied(self.get_permission_denied_message())
         return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
 
+class PledgeOrActiveRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return not self.request.user.is_anonymous and (self.request.user.is_pledge() or self.request.user.is_active_user())
+
+    def handle_no_permission(self):
+        if not self.request.user.is_anonymous:
+            raise PermissionDenied(self.get_permission_denied_message())
+        return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
+
 
 class OpenRushieRequiredMixin(UserPassesTestMixin):
     def test_func(self):
