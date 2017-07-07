@@ -57,10 +57,12 @@ THIRD_PARTY_APPS = (
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
     'oauth2_provider',  # OAuth Provider
+    'django_slack_oauth', # Slack
 )
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
+    'texaslan',
     # custom users app
     'texaslan.users.apps.UsersConfig',
     # Your stuff: custom apps go here
@@ -272,3 +274,12 @@ SENDGRID_MAILING_LIST_ID = get_config("SENDGRID_MAILING_LIST_ID")
 ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
+
+# Slack
+SLACK_CLIENT_ID = get_config("SLACK_CLIENT_ID")
+SLACK_CLIENT_SECRET = get_config("SLACK_CLIENT_SECRET")
+SLACK_SCOPE = 'files:read,files:write:user,users:read'
+SLACK_SUCCESS_REDIRECT_URL = '/users/~update/'
+SLACK_PIPELINES = [
+    'texaslan.slack.pipelines.on_success.register_token',
+]

@@ -31,4 +31,15 @@
             </div>
         </form>
     </div>
+
+    <div class="container">
+        <h3>Slack</h3>
+        {% if slack_auth is None %}
+            <p>Connect your Slack account to automatically manage files.</p>
+            <a class="btn btn-primary" href="{% url 'slack_auth' %}">Connect Slack Account</a><br><br>
+        {% else %}
+            <p>Slack account connected. <a href="slack-delete">Disconnect</a></p>
+            <p>Files older than 30 days are automatically deleted.</p>
+        {% endif %}
+    </div>
 {% endblock %}

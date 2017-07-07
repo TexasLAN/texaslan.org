@@ -17,8 +17,7 @@
     "gulp-util": "^3.0.7",
     "run-sequence": "^1.2.1"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "engines": {
     "node": ">=0.8.0"
   }

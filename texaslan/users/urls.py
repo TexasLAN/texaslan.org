@@ -33,4 +33,10 @@ urlpatterns = [
         view=views.UserUpdateView.as_view(),
         name='update'
     ),
+
+    url(
+        regex=r'^~update/slack-delete/$',
+        view=views.delete_slack_token,
+        name='slack-delete'
+    ),
 ]

@@ -52,3 +52,6 @@ django_cleanup==0.4.2
 
 # OAuth
 django-oauth-toolkit==0.11.0
+
+# Slack
+django-slack-oauth==1.1.0
