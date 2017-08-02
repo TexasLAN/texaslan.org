@@ -111,9 +111,7 @@ DEBUG = get_config('DEBUG')
 # FIXTURE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-FIXTURE_DIRS
-FIXTURE_DIRS = (
-    str(APPS_DIR.path('fixtures')),
-)
+FIXTURE_DIRS = ()
 
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
