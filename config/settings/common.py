@@ -281,3 +281,6 @@ SLACK_SUCCESS_REDIRECT_URL = '/users/~update/'
 SLACK_PIPELINES = [
     'texaslan.slack.pipelines.on_success.register_token',
 ]
+
+# Photos
+PHOTOS_DRIVE_FOLDER_ID = get_config("PHOTOS_DRIVE_FOLDER_ID")

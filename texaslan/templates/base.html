@@ -62,9 +62,11 @@
             <div class="collapse navbar-collapse"
                  id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="{% block about_tab %}{% endblock %} nav-item">
-                        <a class="nav-link" href="{% url 'about' %}">About</a>
-                    </li>
+                    {% if not request.user.is_authenticated %}
+                        <li class="{% block about_tab %}{% endblock %} nav-item">
+                            <a class="nav-link" href="{% url 'about' %}">About</a>
+                        </li>
+                    {% endif %}
                     {% if request.user.is_open_rushie %}
                         <li class="{% block applications_tab %}{% endblock %} nav-item">
                             <a class="nav-link" href="{% url 'applications:modify' %}">Application</a>
@@ -77,13 +79,18 @@
                         <li class="{% block comments_tab %}{% endblock %} nav-item">
                             <a class="nav-link" href="{% url 'comments:list' %}">Comments</a>
                         </li>
-                        <li class="{% block voting_tab %}{% endblock %} nav-item">
-                            <a class="nav-link" href="{% url 'voting:list' %}">Voting</a>
-                        </li>
+                        {% if voting_open %}
+                            <li class="{% block voting_tab %}{% endblock %} nav-item">
+                                <a class="nav-link" href="{% url 'voting:list' %}">Voting</a>
+                            </li>
+                        {% endif %}
                     {% endif %}
                     {% if request.user.is_active_user or request.user.is_alumni %}
                         <li class="{% block members_tab %}{% endblock %} nav-item">
                             <a class="nav-link" href="{% url 'users:list' %}">Members</a>
+                        </li>
+                        <li class="{% block photos_tab %}{% endblock %} nav-item">
+                            <a class="nav-link" href="{% url 'photos:index' %}">Photos</a>
                         </li>
                     {% endif %}
                     {% if request.user.is_officer %}
@@ -92,6 +99,27 @@
                         </li>
                         <li class="{% block go_tab %}{% endblock %} nav-item">
                             <a class="nav-link" href="{% url 'go:list' %}">Go</a>
+                        </li>
+                        <li class="{% block gsuite_tab %}{% endblock %} nav-item">
+                            <a class="dropdown-toggle"
+                                   data-toggle="dropdown"
+                                   aria-expanded="false"
+                                   role="button"
+                                   href="#">
+                                    GSuite <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu"
+                                role="menu">
+                                <li>
+                                    <a href="http://drive.lambdaalphanu.org" target="_blank">{% trans "Drive" %}</a>
+                                </li>
+                                <li>
+                                    <a href="http://cal.lambdaalphanu.org" target="_blank">{% trans "Calendar" %}</a>
+                                </li>
+                                <li>
+                                    <a href="http://mail.lambdaalphanu.org" target="_blank">{% trans "Mail" %}</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="{% block admin_tab %}{% endblock %} nav-item">
                             <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
