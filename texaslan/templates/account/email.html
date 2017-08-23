@@ -6,6 +6,9 @@
 {% block head_title %}{% trans "Account" %}{% endblock %}
 
 {% block inner %}
+    <div class="alert alert-info" role="alert">
+        Your primary email will be invited to the necessary Google Group distribution lists.
+    </div>
     <h1>{% trans "E-mail Addresses" %}</h1>
     {% if user.emailaddress_set.all %}
         <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
@@ -25,11 +28,11 @@
 
                             {{ emailaddress.email }}
                             {% if emailaddress.verified %}
-                                <span class="verified">{% trans "Verified" %}</span>
+                                <span class="verified">{% trans "(Verified)" %}</span>
                             {% else %}
-                                <span class="unverified">{% trans "Unverified" %}</span>
+                                <span class="unverified">{% trans "(Unverified)" %}</span>
                             {% endif %}
-                            {% if emailaddress.primary %}<span class="primary">{% trans "Primary" %}</span>{% endif %}
+                            {% if emailaddress.primary %}<span class="primary">{% trans "(Primary)" %}</span>{% endif %}
                         </label>
                     </div>
                 {% endfor %}

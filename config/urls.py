@@ -26,6 +26,7 @@ urlpatterns = [
                   url(r'^applications/', include('texaslan.applications.urls', namespace='applications')),
                   url(r'^voting/', include('texaslan.voting.urls', namespace='voting')),
                   url(r'^photos/', include('texaslan.photos.urls', namespace='photos')),
+                  url(r'^notifications/', include('texaslan.notifications.urls', namespace='notifications')),
                   url(r'^slack/', include('django_slack_oauth.urls')),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

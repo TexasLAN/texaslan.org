@@ -1,0 +1,248 @@
+{% extends "notifications/base.html" %}
+{% load static %}{% load i18n %}
+{% block title %}Notifications{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs nav-justified" role="tablist">
+                    {% if request.user.is_active or request.user.is_inactive %}
+                    <li role="presentation" class="active">
+                        <a href="#gm" aria-controls="profile" role="tab" data-toggle="tab">
+                            GM
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_open_rushie %}
+                    <li role="presentation">
+                        <a href="#open_rushie" aria-controls="profile" role="tab" data-toggle="tab">
+                            Open
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_closed_rushie %}
+                    <li role="presentation">
+                        <a href="#closed_rushie" aria-controls="profile" role="tab" data-toggle="tab">
+                            Closed
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_pledge %}
+                    <li role="presentation">
+                        <a href="#pledge" aria-controls="profile" role="tab" data-toggle="tab">
+                            Pledges
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_active %}
+                    <li role="presentation">
+                        <a href="#member" aria-controls="home" role="tab" data-toggle="tab">
+                            Actives
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_officer %}
+                    <li role="presentation">
+                        <a href="#officer" aria-controls="profile" role="tab" data-toggle="tab">
+                            Officers
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_board %}
+                    <li role="presentation">
+                        <a href="#board" aria-controls="profile" role="tab" data-toggle="tab">
+                            Board
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_inactive %}
+                    <li role="presentation">
+                        <a href="#inactive" aria-controls="profile" role="tab" data-toggle="tab">
+                            Inactives
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_alumni %}
+                    <li role="presentation">
+                        <a href="#alumni" aria-controls="profile" role="tab" data-toggle="tab">
+                            Alumni
+                        </a>
+                    </li>
+                    {% endif %}
+                    <li role="presentation">
+                        <a href="#help" aria-controls="profile" role="tab" data-toggle="tab">
+                            Help
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                {% if request.user.is_active or request.user.is_inactive %}
+                <div role="tabpanel" class="tab-pane active" id="gm">
+                    <iframe id="gm_forum_embed"
+                        src="javascript:void(0)"
+                        scrolling="no"
+                        frameborder="0"
+                        width="100%"
+                        height="500vh">
+                    </iframe>
+                    <script type="text/javascript">
+                        document.getElementById('gm_forum_embed').src =
+                            'https://groups.google.com/a/texaslan.org/forum/embed/?place=forum/gm'
+                            + '&showsearch=true&showpopout=false&showtabs=false'
+                            + '&parenturl=' + encodeURIComponent(window.location.href);
+                    </script>
+                </div>
+                {% endif %}
+                {% if request.user.is_open_rushie %}
+                <div role="tabpanel" class="tab-pane" id="open_rushie">
+                    <iframe id="open_rush_forum_embed"
+                        src="javascript:void(0)"
+                        scrolling="no"
+                        frameborder="0"
+                        width="100%"
+                        height="500vh">
+                    </iframe>
+                    <script type="text/javascript">
+                        document.getElementById('open_rush_forum_embed').src =
+                            'https://groups.google.com/a/texaslan.org/forum/embed/?place=forum/open-rushees'
+                            + '&showsearch=true&showpopout=false&showtabs=false'
+                            + '&parenturl=' + encodeURIComponent(window.location.href);
+                    </script>
+                </div>
+                {% endif %}
+                {% if request.user.is_closed_rushie %}
+                <div role="tabpanel" class="tab-pane" id="closed_rushie">
+                    <iframe id="closed_rush_forum_embed"
+                        src="javascript:void(0)"
+                        scrolling="no"
+                        frameborder="0"
+                        width="100%"
+                        height="500vh">
+                    </iframe>
+                    <script type="text/javascript">
+                        document.getElementById('closed_rush_forum_embed').src =
+                            'https://groups.google.com/a/texaslan.org/forum/embed/?place=forum/closed-rushees'
+                            + '&showsearch=true&showpopout=false&showtabs=false'
+                            + '&parenturl=' + encodeURIComponent(window.location.href);
+                    </script>
+                </div>
+                {% endif %}
+                {% if request.user.is_pledge %}
+                <div role="tabpanel" class="tab-pane" id="pledge">
+                    <iframe id="pledge_forum_embed"
+                        src="javascript:void(0)"
+                        scrolling="no"
+                        frameborder="0"
+                        width="100%"
+                        height="500vh">
+                    </iframe>
+                    <script type="text/javascript">
+                        document.getElementById('pledge_forum_embed').src =
+                            'https://groups.google.com/a/texaslan.org/forum/embed/?place=forum/pledges'
+                            + '&showsearch=true&showpopout=false&showtabs=false'
+                            + '&parenturl=' + encodeURIComponent(window.location.href);
+                    </script>
+                </div>
+                {% endif %}
+                {% if request.user.is_active %}
+                <div role="tabpanel" class="tab-pane" id="member">
+                    <iframe id="active_forum_embed"
+                        src="javascript:void(0)"
+                        scrolling="no"
+                        frameborder="0"
+                        width="100%"
+                        height="500vh">
+                    </iframe>
+                    <script type="text/javascript">
+                        document.getElementById('active_forum_embed').src =
+                            'https://groups.google.com/a/texaslan.org/forum/embed/?place=forum/actives'
+                            + '&showsearch=true&showpopout=false&showtabs=false'
+                            + '&parenturl=' + encodeURIComponent(window.location.href);
+                    </script>
+                </div>
+                {% endif %}
+                {% if request.user.is_officer %}
+                <div role="tabpanel" class="tab-pane" id="officer">
+                    <iframe id="officer_forum_embed"
+                        src="javascript:void(0)"
+                        scrolling="no"
+                        frameborder="0"
+                        width="100%"
+                        height="500vh">
+                    </iframe>
+                    <script type="text/javascript">
+                        document.getElementById('officer_forum_embed').src =
+                            'https://groups.google.com/a/texaslan.org/forum/embed/?place=forum/officers'
+                            + '&showsearch=true&showpopout=false&showtabs=false'
+                            + '&parenturl=' + encodeURIComponent(window.location.href);
+                    </script>
+                </div>
+                {% endif %}
+                {% if request.user.is_board %}
+                <div role="tabpanel" class="tab-pane" id="board">
+                    <iframe id="board_forum_embed"
+                        src="javascript:void(0)"
+                        scrolling="no"
+                        frameborder="0"
+                        width="100%"
+                        height="500vh">
+                    </iframe>
+                    <script type="text/javascript">
+                        document.getElementById('board_forum_embed').src =
+                            'https://groups.google.com/a/texaslan.org/forum/embed/?place=forum/board'
+                            + '&showsearch=true&showpopout=false&showtabs=false'
+                            + '&parenturl=' + encodeURIComponent(window.location.href);
+                    </script>
+                </div>
+                {% endif %}
+                {% if request.user.is_inactive %}
+                <div role="tabpanel" class="tab-pane" id="inactive">
+                    <iframe id="inactive_forum_embed"
+                        src="javascript:void(0)"
+                        scrolling="no"
+                        frameborder="0"
+                        width="100%"
+                        height="500vh">
+                    </iframe>
+                    <script type="text/javascript">
+                        document.getElementById('inactive_forum_embed').src =
+                            'https://groups.google.com/a/texaslan.org/forum/embed/?place=forum/inactives'
+                            + '&showsearch=true&showpopout=false&showtabs=false'
+                            + '&parenturl=' + encodeURIComponent(window.location.href);
+                    </script>
+                </div>
+                {% endif %}
+                {% if request.user.is_alumni %}
+                <div role="tabpanel" class="tab-pane" id="alumni">
+                    <iframe id="alumni_forum_embed"
+                        src="javascript:void(0)"
+                        scrolling="no"
+                        frameborder="0"
+                        width="100%"
+                        height="500vh">
+                    </iframe>
+                    <script type="text/javascript">
+                        document.getElementById('alumni_forum_embed').src =
+                            'https://groups.google.com/a/texaslan.org/forum/embed/?place=forum/alumni'
+                            + '&showsearch=true&showpopout=false&showtabs=false'
+                            + '&parenturl=' + encodeURIComponent(window.location.href);
+                    </script>
+                </div>
+                {% endif %}
+                <div role="tabpanel" class="tab-pane container" id="help">
+                    <h3>Missing access to a group?</h3>
+                    <p>
+                        First, make sure you're logged in to the Google account which uses the email associated with your Texas LAN account. Emails are synced approximately every 24 hours and will result in an invite to the necessary groups.
+                    </p>
+                    <p>If the issue persists, contact general@texaslan.org or ping an officer on Slack.</p>
+
+                    <h3>More</h3>
+                    <p>Use Google Groups to access additional groups, settings, and more.</p>
+                    <p><a class="btn btn-primary" href="https://groups.google.com/a/texaslan.org/">{% trans "Google Groups" %}</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -10,6 +10,9 @@
                 <h1 class="panel-title">Send Notification</h1>
             </div>
             <div class="panel-body">
+                <div class="alert alert-warning" role="alert">
+                    This page is deprecated in favor of <a href="https://groups.google.com/a/texaslan.org/">Google Groups</a>.
+                </div>
                 <form class="form-horizontal" method="post" action="{% url 'notify:notify' %}">
                     {% csrf_token %}
                     {{ form|crispy }}
