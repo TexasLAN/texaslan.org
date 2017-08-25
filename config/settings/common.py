@@ -195,6 +195,7 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
                 # Your stuff: custom template context processors go here
+                'texaslan.photos.context_processor.photos_url'
             ],
         },
     },
@@ -283,4 +284,4 @@ SLACK_PIPELINES = [
 ]
 
 # Photos
-PHOTOS_DRIVE_FOLDER_ID = get_config("PHOTOS_DRIVE_FOLDER_ID")
+PHOTOS_DRIVE_FOLDER_URL = get_config("PHOTOS_DRIVE_FOLDER_URL")

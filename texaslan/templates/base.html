@@ -90,7 +90,7 @@
                             <a class="nav-link" href="{% url 'users:list' %}">Members</a>
                         </li>
                         <li class="{% block photos_tab %}{% endblock %} nav-item">
-                            <a class="nav-link" href="{% url 'photos:index' %}">Photos</a>
+                            <a class="nav-link" href="{{ photos_url }}">Photos</a>
                         </li>
                     {% endif %}
                     <li class="{% block notifications_tab %}{% endblock %} nav-item">
