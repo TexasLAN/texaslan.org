@@ -30,6 +30,7 @@ class Command(BaseCommand):
 
     def sync_list(self, email, in_database):
         print('Syncing ' + email + '...')
+        in_database = [x.lower() for x in in_database]
         in_database = set(in_database)
         in_group = set(self.get_group_members_from_gsuite(email))
 
