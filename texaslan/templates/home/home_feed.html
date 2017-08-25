@@ -1,14 +1,16 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% load account socialaccount %}
 
 {% block content %}
     {% if not request.user.is_authenticated %}
         <div class="welcome text-center">
-            <h2>Join the ΛΑΝ fam.<br/> No pressure.<br/> A way to better the computer community.</h2>
+            <img src="{% static 'images/lan-crest.png' %}" width="25%" />
+            <h2>Lambda Alpha Nu</h2>
+            <p>The co-ed social computing fraternity</p> 
             <a class="btn btn-primary" href="{% url 'about' %}">LEARN MORE</a>
-            <a class="btn btn-primary" href="{% url 'account_signup' %}">SIGN UP</a>
-            <a class="btn btn-primary" href="https://goo.gl/forms/2xFcSPDptvws8xHM2">SUBSCRIBE</a>
+            <a class="btn btn-primary" href="{% url 'account_signup' %}">APPLY</a>
+            <a class="btn btn-primary" href="https://www.facebook.com/groups/1323210434392547/">RUSH GROUP</a>
         </div>    
     {% endif %}
     <div class="events">

@@ -11,23 +11,27 @@
 {% endblock %}
 
 {% block content %}
-    <div class="events">
-        {% for event in event_list %}
-            <div class="panel card container">
-                <div class="row">
-                    <div class="card-content col-md-8 col-xs-7">
-                        <h1 class="card-title">{{ event.title }}</h1>
-                        <p>{{ event.location }}</p>
-                        <p>{{ event.start_time }}</p>
+    {% if event_list %}
+        <div class="events">
+            {% for event in event_list %}
+                <div class="panel card container">
+                    <div class="row">
+                        <div class="card-content col-md-8 col-xs-7">
+                            <h1 class="card-title">{{ event.title }}</h1>
+                            <p>{{ event.location }}</p>
+                            <p>{{ event.start_time }}</p>
+                        </div>
+                        <div class="card-media col-md-4 col-xs-1">
+                            <img src="{{ event.image_url }}"/>
+                        </div>
                     </div>
-                    <div class="card-media col-md-4 col-xs-1">
-                        <img src="{{ event.image_url }}"/>
+                    <div class="card-actions row">
+                        <a class="btn btn-flat" href="{% url 'events:detail' event.id %}">View</a>
                     </div>
                 </div>
-                <div class="card-actions row">
-                    <a class="btn btn-flat" href="{% url 'events:detail' event.id %}">View</a>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h3 align="center">No upcoming events</h3>
+    {% endif %}
 {% endblock content %}
