@@ -24,11 +24,11 @@ class Command(BaseCommand):
                 out = out.split('\n')
                 for i in range(1, len(out)):
                     row = out[i].split(',')
-                    if len(row) >= 3 and row[2].lower() != 'lanbot@texaslan.org':
+                    if len(row) >= 3 and '@texaslan.org' not in row[2].lower():
                         members.append(row[2].lower())
         return members
 
-    def sync_list(self, email, in_database):
+    def sync_list(self, email, in_database, dry_run):
         print('Syncing ' + email + '...')
         in_database = [x.lower() for x in in_database]
         in_database = set(in_database)
@@ -37,8 +37,13 @@ class Command(BaseCommand):
         add_to_group = [x for x in in_database if x not in in_group]
         remove_from_group = [x for x in in_group if x not in in_database]
 
+        if dry_run:
+            print('Adding: ' + str(add_to_group))
+            print('Removing: ' + str(remove_from_group))
+            return
+
         print('Adding: ' + str(add_to_group))
-        if len(add_to_group) != 0:
+        if len(add_to_group) != 0 and not DRY_RUN:
             with open('users-to-add.txt', 'a') as out:
                 for e in add_to_group:
                     out.write(e + '\n')
@@ -56,7 +61,7 @@ class Command(BaseCommand):
         else:
             print('No users to add.')
 
-        if len(remove_from_group) != 0:
+        if len(remove_from_group) != 0 and not DRY_RUN:
             print('Removing: ' + str(remove_from_group))
             with open('users-to-remove.txt', 'a') as out:
                 for e in remove_from_group:
@@ -91,13 +96,13 @@ class Command(BaseCommand):
         inactives = UserService.get_inactive_users_emails()
         gm = actives + list(set(inactives) - set(actives))
 
-        self.sync_list('gm@texaslan.org', gm)
-        self.sync_list('open-rushees@texaslan.org', UserService.get_open_rushie_users_emails())
-        self.sync_list('closed-rushees@texaslan.org', UserService.get_closed_rushie_users_emails())
-        self.sync_list('pledges@texaslan.org', UserService.get_pledge_users_emails())
-        self.sync_list('actives@texaslan.org', actives)
+        self.sync_list('gm@texaslan.org', gm, options['dry_run'])
+        self.sync_list('open-rushees@texaslan.org', UserService.get_open_rushie_users_emails(), options['dry_run'])
+        self.sync_list('closed-rushees@texaslan.org', UserService.get_closed_rushie_users_emails(), options['dry_run'])
+        self.sync_list('pledges@texaslan.org', UserService.get_pledge_users_emails(), options['dry_run'])
+        self.sync_list('actives@texaslan.org', actives, options['dry_run'])
         # Let's not sync these groups for now as @texaslan.org accounts have been provisioned for these users
-        # self.sync_list('officers@texaslan.org', UserService.get_officer_users_emails())
-        # self.sync_list('board@texaslan.org', UserService.get_board_users_emails())
-        self.sync_list('inactives@texaslan.org', inactives)
-        self.sync_list('alumni@texaslan.org', UserService.get_alumni_users_emails())
+        # self.sync_list('officers@texaslan.org', UserService.get_officer_users_emails(), options['dry_run'])
+        # self.sync_list('board@texaslan.org', UserService.get_board_users_emails(), options['dry_run'])
+        self.sync_list('inactives@texaslan.org', inactives, options['dry_run'])
+        self.sync_list('alumni@texaslan.org', UserService.get_alumni_users_emails(), options['dry_run'])
