@@ -93,9 +93,11 @@
                             <a class="nav-link" href="{{ photos_url }}">Photos</a>
                         </li>
                     {% endif %}
-                    <li class="{% block notifications_tab %}{% endblock %} nav-item">
-                        <a class="nav-link" href="{% url 'notifications:list' %}">Notifications</a>
-                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="{% block notifications_tab %}{% endblock %} nav-item">
+                            <a class="nav-link" href="{% url 'notifications:list' %}">Notifications</a>
+                        </li>
+                    {% endif %}
                     {% if request.user.is_officer %}
                         <li class="{% block notify_tab %}{% endblock %} nav-item">
                             <a class="nav-link" href="{% url 'notify:notify' %}">Notify</a>
