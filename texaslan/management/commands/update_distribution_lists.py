@@ -43,7 +43,7 @@ class Command(BaseCommand):
             return
 
         print('Adding: ' + str(add_to_group))
-        if len(add_to_group) != 0 and not DRY_RUN:
+        if len(add_to_group) != 0 and not dry_run:
             with open('users-to-add.txt', 'a') as out:
                 for e in add_to_group:
                     out.write(e + '\n')
@@ -61,7 +61,7 @@ class Command(BaseCommand):
         else:
             print('No users to add.')
 
-        if len(remove_from_group) != 0 and not DRY_RUN:
+        if len(remove_from_group) != 0 and not dry_run:
             print('Removing: ' + str(remove_from_group))
             with open('users-to-remove.txt', 'a') as out:
                 for e in remove_from_group:
