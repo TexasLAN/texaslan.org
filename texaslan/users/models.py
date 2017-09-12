@@ -77,6 +77,9 @@ class User(AbstractUser):
     def is_closed_rushie(self):
         return self.groups.filter(name="Closed Rushie").exists()
 
+    def is_rushie(self):
+        return self.is_open_rushie() or self.is_closed_rushie()
+
     def is_pledge(self):
         return self.groups.filter(name="Pledge").exists()
 
