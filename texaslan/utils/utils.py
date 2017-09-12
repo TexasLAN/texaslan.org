@@ -10,6 +10,14 @@ from texaslan.site_settings.models import SiteSettingService
 import json
 import sendgrid
 
+class LoggedInRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return not self.request.user.is_anonymous and self.request.user.is_authenticated
+
+    def handle_no_permission(self):
+        if not self.request.user.is_authenticated:
+            raise PermissionDenied(self.get_permission_denied_message())
+        return redirect_to_login(self.request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
 
 class OfficerRequiredMixin(UserPassesTestMixin):
     def test_func(self):

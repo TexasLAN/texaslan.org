@@ -7,7 +7,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
-                    {% if request.user.is_active or request.user.is_inactive %}
+                    {% if request.user.is_active_user or request.user.is_inactive %}
                     <li role="presentation" class="active">
                         <a href="#gm" aria-controls="profile" role="tab" data-toggle="tab">
                             GM
@@ -35,7 +35,7 @@
                         </a>
                     </li>
                     {% endif %}
-                    {% if request.user.is_active %}
+                    {% if request.user.is_active_user %}
                     <li role="presentation">
                         <a href="#member" aria-controls="home" role="tab" data-toggle="tab">
                             Actives
