@@ -108,8 +108,8 @@ class ApplicationDetailView(ActiveRequiredMixin, FormView):
                 board_avg_rating_count += 1
                 board_avg_rating_total += review.rating
             else:
-                avg_rating_count += 1
-                avg_rating_total += review.rating
+                member_avg_rating_count += 1
+                member_avg_rating_total += review.rating
 
         avg_rating_total = member_avg_rating_total + board_avg_rating_total
         avg_rating_count = member_avg_rating_count + board_avg_rating_count
