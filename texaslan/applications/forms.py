@@ -21,10 +21,19 @@ class ApplicationForm(forms.ModelForm):
             raise forms.ValidationError("Applications was already submitted")
 
         if not SiteSettingService.is_rush_open():
-            raise forms.ValidationError("Applications is late")
+            raise forms.ValidationError("Application is late")
 
         if 'submit_btn' in self.data:
             application.is_submitted = True
+
+    def __init__(self, *args, **kwargs):
+        super(ApplicationForm, self).__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance and instance.id:
+            application = self.save(commit=False)
+            if application.is_submitted:
+                for key, _ in self.fields.items():
+                    self.fields[key].widget.attrs['readonly'] = True
 
 
 RATING_CHOICES = (
@@ -64,7 +73,7 @@ class ReviewForm(forms.ModelForm):
             review.save()
         else:
             anon_review = Review.objects.create()
-            anon_review.rating = None
+            anon_review.rating = self.cleaned_data['rating']
             anon_review.comment = self.cleaned_data['comment']
             anon_review.application = get_object_or_404(Application, pk=int(self.data['application_id']))
             anon_review.save()
