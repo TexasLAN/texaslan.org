@@ -47,6 +47,7 @@ class ApplicationListView(ActiveRequiredMixin, TemplateView):
             avg_rating_count = 0
             board_avg_rating_total = 0
             board_avg_rating_count = 0
+            rating_count = len(reviews)
 
             for review in reviews:
                 if review.rating is None or review.reviewer_user is None:
@@ -75,7 +76,7 @@ class ApplicationListView(ActiveRequiredMixin, TemplateView):
             except Review.DoesNotExist:
                 review_list.append(False)
 
-        context['application_list'] = zip(application_list, review_list, avg_rating_list, board_avg_rating_list)
+        context['application_list'] = zip(application_list, review_list, avg_rating_list, board_avg_rating_list, rating_count)
         return context
 
 

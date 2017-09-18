@@ -29,7 +29,7 @@
                         <th>Avg Rating</th>
                     </tr>
                     </thead>
-                    {% for application, reviewed, avg_rating, board_avg_rating in application_list %}
+                    {% for application, reviewed, avg_rating, board_avg_rating, rating_count in application_list %}
                         <tr>
                             <td>
                                 <a href="{% url 'applications:detail' application.id %}">{{ application.applicant_user.full_name }}</a>
@@ -39,6 +39,7 @@
                             <td>{% if reviewed %}✔{% endif %}</td>
                             <td>{{ board_avg_rating }}</td>
                             <td>{{ avg_rating }}</td>
+                            <td>{{ rating_count }}</td>
                         </tr>
                     {% endfor %}
                 </table>
