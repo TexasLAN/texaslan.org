@@ -33,6 +33,29 @@ LAN_CLASS = (
     ("Z", "Zeta"),
 )
 
+SEMESTERS = (
+    ("F14", "Fall 2014"),
+    ("S15", "Spring 2015"),
+    ("F15", "Fall 2015"),
+    ("S16", "Spring 2016"),
+    ("F16", "Fall 2016"),
+    ("S17", "Spring 2017"),
+    ("F17", "Fall 2017"),
+    ("S18", "Spring 2018"),
+    ("F18", "Fall 2018"),
+    ("S19", "Spring 2019"),
+    ("F19", "Fall 2019"),
+)
+
+class ActiveSemester(models.Model):
+    semester = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.semester
+
+    class Meta:
+        db_table = "semester"
+
 
 @python_2_unicode_compatible
 class User(AbstractUser):
@@ -43,6 +66,7 @@ class User(AbstractUser):
     concentration = models.CharField(max_length=3, choices=CONCENTRATION_CHOICES, default="O")
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default="P")
     lan_class = models.CharField(max_length=3, choices=LAN_CLASS, null=True, blank=True)
+    active_semesters = models.ManyToManyField(ActiveSemester, blank=True)
 
     def __str__(self):
         return self.username
@@ -97,7 +121,6 @@ class User(AbstractUser):
 
     def is_alumni(self):
         return self.groups.filter(name="Alumni").exists()
-
 
 class UserService:
     # User Getters
