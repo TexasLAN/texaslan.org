@@ -47,14 +47,14 @@ SEMESTERS = (
     ("F19", "Fall 2019"),
 )
 
-class ActiveInterval(models.Model):
+class ActiveSemester(models.Model):
     semester = models.CharField(max_length=255)
 
     def __str__(self):
         return self.semester
 
     class Meta:
-        db_table = "interval"
+        db_table = "semester"
 
 
 @python_2_unicode_compatible
@@ -66,7 +66,7 @@ class User(AbstractUser):
     concentration = models.CharField(max_length=3, choices=CONCENTRATION_CHOICES, default="O")
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default="P")
     lan_class = models.CharField(max_length=3, choices=LAN_CLASS, null=True, blank=True)
-    active_intervals = models.ManyToManyField(ActiveInterval, blank=True)
+    active_semesters = models.ManyToManyField(ActiveSemester, blank=True)
 
     def __str__(self):
         return self.username
