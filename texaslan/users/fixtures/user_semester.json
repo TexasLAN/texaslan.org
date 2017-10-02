@@ -1,0 +1,79 @@
+[
+  {
+    "model": "users.activeinterval",
+    "pk": 0,
+    "fields": {
+      "semester": "Fall 2014"
+    }
+  },
+  {
+    "model": "users.activeinterval",
+    "pk": 1,
+    "fields": {
+      "semester": "Spring 2015"
+    }
+  },
+  {
+    "model": "users.activeinterval",
+    "pk": 2,
+    "fields": {
+      "semester": "Fall 2015"
+    }
+  },
+  {
+    "model": "users.activeinterval",
+    "pk": 3,
+    "fields": {
+      "semester": "Spring 2016"
+    }
+  },
+  {
+    "model": "users.activeinterval",
+    "pk": 4,
+    "fields": {
+      "semester": "Fall 2016"
+    }
+  },
+  {
+    "model": "users.activeinterval",
+    "pk": 5,
+    "fields": {
+      "semester": "Spring 2017"
+    }
+  },
+  {
+    "model": "users.activeinterval",
+    "pk": 6,
+    "fields": {
+      "semester": "Fall 2017"
+    }
+  },
+  {
+    "model": "users.activeinterval",
+    "pk": 7,
+    "fields": {
+      "semester": "Spring 2018"
+    }
+  },
+  {
+    "model": "users.activeinterval",
+    "pk": 8,
+    "fields": {
+      "semester": "Fall 2018"
+    }
+  },
+  {
+    "model": "users.activeinterval",
+    "pk": 9,
+    "fields": {
+      "semester": "Spring 2019"
+    }
+  },
+  {
+    "model": "users.activeinterval",
+    "pk": 10,
+    "fields": {
+      "semester": "Fall 2019"
+    }
+  }
+]

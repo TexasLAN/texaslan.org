@@ -37,11 +37,11 @@ class MyUserAdmin(AuthUserAdmin):
     add_form = MyUserCreationForm
     fieldsets = (
                     ('User Profile', {'fields': (
-                        'full_name', 'nick_name', 'graduation_date', 'concentration', 'gender', 'lan_class',)}),
+                        'full_name', 'nick_name', 'graduation_date', 'concentration', 'gender', 'lan_class', 'active_intervals')}),
                 ) + AuthUserAdmin.fieldsets
     add_fieldsets = (
                         ('User Profile', {'fields': (
-                            'full_name', 'nick_name', 'graduation_date', 'concentration', 'gender', 'lan_class',)}),
+                            'full_name', 'nick_name', 'graduation_date', 'concentration', 'gender', 'lan_class', 'active_intervals')}),
                     ) + AuthUserAdmin.fieldsets
     list_display = ('username', 'id', 'full_name', 'email', 'lan_class', 'graduation_date', 'is_superuser')
-    search_fields = ['full_name']
+    search_fields = ['full_name', 'active_intervals__semester']
