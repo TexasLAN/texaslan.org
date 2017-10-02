@@ -21,6 +21,15 @@ class UserDetailView(SelfOrMemberRequiredMixin, DetailView):
     slug_field = 'username'
     slug_url_kwarg = 'username'
 
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        try:
+            data['slack_auth'] = SlackOAuthRequest.objects.get(associated_user=self.request.user)
+        except SlackOAuthRequest.DoesNotExist:
+            data['slack_auth'] = None
+        
+        return data
+
 
 class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False

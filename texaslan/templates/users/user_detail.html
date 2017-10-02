@@ -28,7 +28,12 @@
                             {% endif %}
                         </div>
                         <div class="col-md-9">
-                            <h5>Nick Name: </h5>
+                            {% if slack_auth is None %}
+                                <div class="alert alert-info" role="alert">
+                                    <a href="{% url 'slack_auth' %}">Connect your Slack account</a> to automatically clear old files.
+                                </div>
+                            {% endif %}
+                            <h5>Nickname: </h5>
                             <p>{{ object.nick_name }}</p>
                             <h5>Graduation Date: </h5>
                             <p>{{ object.graduation_date }}</p>

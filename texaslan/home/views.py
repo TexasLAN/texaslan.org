@@ -3,6 +3,8 @@ import datetime
 from django.template import loader
 from django.shortcuts import render
 
+from django_slack_oauth.models import SlackOAuthRequest
+
 from texaslan.events.models import Event
 
 
@@ -19,8 +21,19 @@ def home_feed(request):
     else:
         event_list = [event for event in event_list if event.is_member_and_pledge_safe()]
 
+    # Determine if user has linked Slack account
+    linked_slack = False
+    try:
+        if request.user.is_anonymous():
+            raise SlackOAuthRequest.DoesNotExist()
+        SlackOAuthRequest.objects.get(associated_user=request.user)
+        linked_slack = True
+    except SlackOAuthRequest.DoesNotExist:
+        pass
+
     data = {
         'event_list': event_list,
+        'linked_slack': linked_slack
     }
 
     return render(request, 'home/home_feed.html', context=data)
