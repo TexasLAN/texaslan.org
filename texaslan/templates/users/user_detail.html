@@ -35,6 +35,8 @@
                             {% endif %}
                             <h5>Nickname: </h5>
                             <p>{{ object.nick_name }}</p>
+                            <h5>Pledge Class:</h5>
+                            <p>{{ object.get_lan_class_display }}</p>
                             <h5>Graduation Date: </h5>
                             <p>{{ object.graduation_date }}</p>
                         </div>
