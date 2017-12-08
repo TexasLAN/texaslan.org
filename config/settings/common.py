@@ -58,6 +58,7 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount',  # registration
     'oauth2_provider',  # OAuth Provider
     'django_slack_oauth', # Slack
+    'rest_framework', # Django REST framework
 )
 
 # Apps specific for this project go here.
