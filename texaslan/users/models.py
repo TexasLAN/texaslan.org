@@ -3,7 +3,7 @@ from __future__ import unicode_literals, absolute_import
 
 import hashlib
 
-from django.contrib.auth.models import Group, AbstractUser
+from django.contrib.auth.models import Group, AbstractUser, BaseUserManager
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
@@ -58,6 +58,35 @@ class ActiveSemester(models.Model):
     class Meta:
         db_table = "semester"
 
+class UserManager(BaseUserManager):
+
+    def get_by_natural_key(self, key):
+        print("out here 10101")
+        return self.get(**{self.model.USERNAME_FIELD: key})
+
+    def create_user(self, email, password=None, **kwargs):
+        if not email:
+            raise ValueError('Users must have a valid e-mail address')
+
+        user = self.model(
+                email=self.normalize_email(email),
+                full_name=kwargs.get('full_name'),
+                nick_name=kwargs.get('nick_name'),
+                graduation_date=kwargs.get('graduation_date'),
+                phone_number=kwargs.get('phone_number'),
+            )
+        user.set_password(password)
+        user.save()
+
+        return user
+
+    def create_superuser(self, email, password=None, **kwargs):
+        user = self.create_user(email, password, kwargs)
+        user.is_admin = True
+        user.save()
+
+        return user
+
 
 @python_2_unicode_compatible
 class User(AbstractUser):
@@ -69,6 +98,15 @@ class User(AbstractUser):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default="P")
     lan_class = models.CharField(max_length=3, choices=LAN_CLASS, null=True, blank=True)
     active_semesters = models.ManyToManyField(ActiveSemester, blank=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+    def get_username(self):
+        return self.email
+
+
+    objects = UserManager()
 
     def __str__(self):
         return self.username
