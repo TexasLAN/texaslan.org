@@ -289,7 +289,5 @@ PHOTOS_DRIVE_FOLDER_URL = get_config("PHOTOS_DRIVE_FOLDER_URL")
 
 # Django Rest JWT
 JWT_AUTH = {
-        'JWT_RESPONSE_PAYLOAD_HANDLER': 'texaslan.utils.utils.jwt_response_payload_handler',
-        'JWT_PAYLOAD_HANDLER': 'texaslan.utils.utils.jwt_payload_handler',
-        'JWT_PAYLOAD_GET_USERNAME_HANDLER': 'texaslan.utils.utils.jwt_get_username_from_payload_handler',
+        'JWT_RESPONSE_PAYLOAD_HANDLER': 'texaslan.utils.utils.jwt_response_payload_format',
 }

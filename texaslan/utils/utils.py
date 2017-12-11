@@ -191,20 +191,11 @@ def unsubscribe_user_to_newsletter(email):
     # sg.client.contactdb.lists._(SENDGRID_MAILING_LIST_ID).recipients._(recipient_id).delete()
     pass
 
-def jwt_response_payload_handler(token, user=None, request=None):
+def jwt_response_payload_format(token, user=None, request=None):
     return {
         'token': token,
         'user': {
             'email': user.email,
         }
     }
-
-def jwt_payload_handler(user):
-    return {
-        'email': user.email,
-        'is_superuser': user.is_superuser,
-    }
-
-def jwt_get_username_from_payload_handler(payload):
-    return payload.get('email')
 

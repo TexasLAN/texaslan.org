@@ -61,8 +61,7 @@ class ActiveSemester(models.Model):
 class UserManager(BaseUserManager):
 
     def get_by_natural_key(self, key):
-        print("out here 10101")
-        return self.get(**{self.model.USERNAME_FIELD: key})
+        return self.get(**{'email': key})
 
     def create_user(self, email, password=None, **kwargs):
         if not email:
@@ -99,8 +98,8 @@ class User(AbstractUser):
     lan_class = models.CharField(max_length=3, choices=LAN_CLASS, null=True, blank=True)
     active_semesters = models.ManyToManyField(ActiveSemester, blank=True)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELD = 'email'
 
     def get_username(self):
         return self.email

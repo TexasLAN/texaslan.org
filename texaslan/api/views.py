@@ -5,10 +5,7 @@ from rest_framework.permissions import AllowAny
 from .serializers import UserSerializer
 from ..users.models import User
 
-class AuthRegister(APIView):
-    """
-    Register a new user
-    """
+class AuthRegisterUser(APIView):
     serializer_class = UserSerializer
     permission_classes = (AllowAny,)
 
