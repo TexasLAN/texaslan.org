@@ -95,6 +95,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
+    'texaslan.api.middleware.JWTAuthMiddleware',
 ]
 
 # MIGRATIONS CONFIGURATION
