@@ -193,9 +193,16 @@ def unsubscribe_user_to_newsletter(email):
 
 def jwt_response_payload_format(token, user=None, request=None):
     return {
-        'token': token,
+        'jwt_token': token,
         'user': {
+            'id': user.id,
             'email': user.email,
+            'full_name': user.full_name,
+            'nick_name': user.nick_name,
+            'graduation_date': user.graduation_date,
+            'is_active': user.is_active,
+            'is_staff': user.is_staff,
+            'is_superuser': user.is_superuser,
         }
     }
 
