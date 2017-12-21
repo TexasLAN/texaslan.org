@@ -69,10 +69,10 @@ class UserManager(BaseUserManager):
 
         user = self.model(
                 email=self.normalize_email(email),
+                username=self.normailze_email(email),
                 full_name=kwargs.get('full_name'),
-                nick_name=kwargs.get('nick_name'),
                 graduation_date=kwargs.get('graduation_date'),
-                phone_number=kwargs.get('phone_number'),
+                concentration=kwargs.get('concentration'),
             )
         user.set_password(password)
         user.save()
