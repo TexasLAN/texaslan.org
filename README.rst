@@ -64,7 +64,7 @@ Required fixtures for the website to be properly running are the Event Tag fixtu
 
 .. _fixtures: https://docs.djangoproject.com/en/1.10/howto/initial-data/
 
-All included test users have the password ``test``.
+All included test users have the password ``password``.
 
 Running Tests
 ^^^^^^^^^^^^^
