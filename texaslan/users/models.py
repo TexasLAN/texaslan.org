@@ -31,6 +31,8 @@ LAN_CLASS = (
     ("D", "Delta"),
     ("E", "Epsilon"),
     ("Z", "Zeta"),
+    ("Et", "Eta"),
+    ("T", "Theta"),
 )
 
 SEMESTERS = (
@@ -121,6 +123,9 @@ class User(AbstractUser):
 
     def is_alumni(self):
         return self.groups.filter(name="Alumni").exists()
+
+    class Meta:
+        db_table = 'user'
 
 class UserService:
     # User Getters
