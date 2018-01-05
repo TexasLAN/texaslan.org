@@ -69,7 +69,7 @@ class UserManager(BaseUserManager):
 
         user = self.model(
                 email=self.normalize_email(email),
-                username=self.normailze_email(email),
+                username=self.normalize_email(email),
                 full_name=kwargs.get('full_name'),
                 graduation_date=kwargs.get('graduation_date'),
                 concentration=kwargs.get('concentration'),

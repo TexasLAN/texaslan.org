@@ -290,4 +290,5 @@ PHOTOS_DRIVE_FOLDER_URL = get_config("PHOTOS_DRIVE_FOLDER_URL")
 # Django Rest JWT
 JWT_AUTH = {
         'JWT_RESPONSE_PAYLOAD_HANDLER': 'texaslan.utils.utils.jwt_response_payload_format',
+        'JWT_ALLOW_REFRESH': True,
 }
