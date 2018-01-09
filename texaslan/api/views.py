@@ -5,6 +5,7 @@ from rest_framework.permissions import AllowAny
 from .serializers import UserSerializer
 from ..users.models import User
 from allauth.account.utils import send_email_confirmation
+from texaslan.site_settings.models import SiteSettingService
 
 class AuthRegisterUser(APIView):
     serializer_class = UserSerializer
@@ -19,3 +20,8 @@ class AuthRegisterUser(APIView):
                     status=status.HTTP_201_CREATED)
         return Response(serializer.errors,
                     status=status.HTTP_400_BAD_REQUEST)
+
+class Status(APIView):
+
+    def get(self, request, format=None):
+        return Response({ 'rush': SiteSettingService.is_rush_open()})

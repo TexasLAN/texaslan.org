@@ -12,7 +12,7 @@ from __future__ import absolute_import, unicode_literals
 
 import json
 import os
-
+import datetime
 import environ
 from django.core.exceptions import ImproperlyConfigured
 
@@ -291,4 +291,5 @@ PHOTOS_DRIVE_FOLDER_URL = get_config("PHOTOS_DRIVE_FOLDER_URL")
 JWT_AUTH = {
         'JWT_RESPONSE_PAYLOAD_HANDLER': 'texaslan.utils.utils.jwt_response_payload_format',
         'JWT_ALLOW_REFRESH': True,
+        'JWT_EXPIRATION_DELTA': datetime.timedelta(days=90),
 }

@@ -9,7 +9,7 @@ def is_api_call(request):
     return request.path.startswith('/api/v1')
 
 def is_jwt_endpoint(request):
-    return request.path.startswith('/api/v1/jwt')
+    return request.path.startswith('/api/v1/jwt') or request.path.startswith('/api/v1/status')
 
 def needs_jwt_verification(request):
     return is_api_call(request) and not is_jwt_endpoint(request)
