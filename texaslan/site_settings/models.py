@@ -6,7 +6,7 @@ from django.conf import settings
 
 VOTING_STATUS_CHOICES = (
     ("C", "Closed"),
-    ("A", "Applications"),
+    ("A", "Applications Open"),
     ("X", "Applications Closed"),
     ("V", "Voting"),
     ("D", "Done"),

@@ -28,6 +28,12 @@
                             {% endif %}
                         </div>
                         <div class="col-md-9">
+                            {% if object.get_lan_class_display is None %}
+                            <h5>Nickname: </h5>
+                            <p>{{ object.nick_name }}</p>
+                            <h5>Graduation Date: </h5>
+                            <p>{{ object.graduation_date }}</p>
+                            {% else %}
                             {% if slack_auth is None %}
                                 <div class="alert alert-info" role="alert">
                                     <a href="{% url 'slack_auth' %}">Connect your Slack account</a> to automatically clear old files.
@@ -39,6 +45,7 @@
                             <p>{{ object.get_lan_class_display }}</p>
                             <h5>Graduation Date: </h5>
                             <p>{{ object.graduation_date }}</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

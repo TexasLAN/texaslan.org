@@ -10,14 +10,14 @@ from texaslan.site_settings.models import SiteSettingService
 
 CANDIDATE_POSITIONS = (
     ("P", "President"),
-    ("A", "VP of Administration"),
-    ("T", "Treasurer"),
+    # ("A", "VP of Administration"),
+    # ("T", "Treasurer"),
     ("S", "VP of Service"),
-    ("N", "VP of New Member Services"),
+    # ("N", "VP of New Member Services"),
     ("O", "VP of Social Affairs"),
-    ("J", "VP of Standards"),
-    ("R", "Risk Management"),
-    ("B", "Standards Board"),
+    # ("J", "VP of Standards"),
+    # ("R", "Risk Management"),
+    # ("B", "Standards Board"),
 )
 
 POSITION_NUMS = {
@@ -105,11 +105,11 @@ class VoteService:
 
         # Clean up the election state
         VoteBallot.objects.all().delete()
+        for vote_status in VoteStatus.objects.all():
+            vote_status.has_voted = False
+            vote_status.save()
         if not success:
             SiteSettingService.set_voting_applications_open()
-            for vote_status in VoteStatus.objects.all():
-                vote_status.has_voted = False
-                vote_status.save()
 
         return success
 
