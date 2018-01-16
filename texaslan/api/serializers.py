@@ -1,8 +1,31 @@
 from django.contrib.auth import update_session_auth_hash
-
 from rest_framework import serializers
-
 from ..users.models import User
+from ..events.models import Event
+import datetime
+
+class EventSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Event
+        fields = ('start_time', 'end_time',  'title', 'location', 'description', 'creator' )
+
+    def create(self, validated_data):
+        return Event.objects.create(
+                    start_time=validated_data.get('start_time'),
+                    end_time=validated_data.get('end_time'),
+                    title=validated_data.get('title'),
+                    location=validated_data.get('location'),
+                    description=validated_data.get('description'),
+                    creator=validated_data.get('creator'),
+                )
+
+    def get(self):
+        events = [event for event in Event.objects.all()]
+        return events
+
+    def validate(self, data):
+        return data
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True)
