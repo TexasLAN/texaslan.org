@@ -30,7 +30,11 @@ class Status(APIView):
 class Event(APIView):
     serializer_class = EventSerializer
 
+    def _extract_user_id_from_middleware(self, request):
+        request.data['creator'] = request.user.get('id')
+
     def post(self, request, format=None):
+        self._extract_user_id_from_middleware(request)
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()

@@ -8,7 +8,7 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ('start_time', 'end_time',  'title', 'location', 'description', 'creator' )
+        fields = ('id', 'start_time', 'end_time',  'title', 'location', 'description', 'creator' )
 
     def create(self, validated_data):
         return Event.objects.create(
@@ -20,11 +20,12 @@ class EventSerializer(serializers.ModelSerializer):
                     creator=validated_data.get('creator'),
                 )
 
-    def get(self):
-        events = [event for event in Event.objects.all()]
-        return events
-
     def validate(self, data):
+        user = data.get('creator')
+        if not user.is_officer():
+            raise serializers.ValidationError(
+                    "Not authorized to create events"
+                )
         return data
 
 class UserSerializer(serializers.ModelSerializer):
@@ -39,7 +40,6 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
-
 
     def update(self, instance, validated_data):
         instance.email = validated_data.get('email', instance.email)

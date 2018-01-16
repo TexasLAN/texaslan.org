@@ -14,8 +14,13 @@ def is_jwt_endpoint(request):
 def needs_jwt_verification(request):
     return is_api_call(request) and not is_jwt_endpoint(request)
 
+def set_user_id_from_jwt(verification_response, request):
+    request.user = verification_response.json().get('user')
+
 def valid_jwt(request):
-    return create_verification_request(request).status_code == status.HTTP_200_OK
+    verification_response = create_verification_request(request)
+    set_user_id_from_jwt(verification_response, request)
+    return verification_response.status_code == status.HTTP_200_OK
 
 def strip_token(request):
     return request.META.get('HTTP_AUTHORIZATION', '')[7:]
