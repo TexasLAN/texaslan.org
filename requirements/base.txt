@@ -55,3 +55,7 @@ django-oauth-toolkit==0.11.0
 
 # Slack
 django-slack-oauth==1.1.0
+
+# JWT
+djangorestframework==3.7.3
+djangorestframework-jwt==1.11.0

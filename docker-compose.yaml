@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    image: texaslan_web:latest
+    command: >
+      bash -c "chmod +x startup.sh      &&\
+               service postgresql start &&\
+               ./startup.sh"
+
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
