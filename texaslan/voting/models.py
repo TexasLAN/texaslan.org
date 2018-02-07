@@ -10,13 +10,13 @@ from texaslan.site_settings.models import SiteSettingService
 
 CANDIDATE_POSITIONS = (
     # ("P", "President"),
-    ("A", "VP of Administration"),
+    # ("A", "VP of Administration"),
     # ("T", "Treasurer"),
     # ("S", "VP of Service"),
     # ("N", "VP of New Member Services"),
-    ("O", "VP of Social Affairs"),
+    # ("O", "VP of Social Affairs"),
     # ("J", "VP of Standards"),
-    # ("R", "Risk Management"),
+    ("R", "Risk Management"),
     # ("B", "Standards Board"),
 )
 
