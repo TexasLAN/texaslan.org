@@ -79,6 +79,7 @@
                         <li class="{% block comments_tab %}{% endblock %} nav-item">
                             <a class="nav-link" href="{% url 'comments:list' %}">Comments</a>
                         </li>
+                        <!-- Changed from: {% if voting_open %} due to no voting tab in officer elections. -->
                         {% if is_applying_open %}
                             <li class="{% block voting_tab %}{% endblock %} nav-item">
                                 <a class="nav-link" href="{% url 'voting:list' %}">Voting</a>
