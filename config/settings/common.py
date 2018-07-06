@@ -137,7 +137,7 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-    'default': environ.Env().db('DATABASE_URL', default='postgres:///texaslan'),
+    'default': get_config("DATABASE")
 }
 
 DATABASES['default']['ATOMIC_REQUESTS'] = True

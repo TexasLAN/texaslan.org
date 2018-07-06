@@ -4,12 +4,17 @@ services:
   web:
     build: .
     image: texaslan_web:latest
+    depends_on:
+      - db
     command: >
-      bash -c "chmod +x startup.sh      &&\
-               service postgresql start &&\
-               ./startup.sh"
+      bash -c "chmod +x startup.sh && ./startup.sh"
 
     volumes:
       - .:/app
     ports:
       - "8000:8000"
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+
