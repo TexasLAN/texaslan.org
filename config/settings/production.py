@@ -73,14 +73,7 @@ TEMPLATES[0]['OPTIONS']['loaders'] = [
 # ------------------------------------------------------------------------------
 # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': get_config("DATABASE_NAME"),
-        'USER': get_config("DATABASE_USER"),
-        'PASSWORD': get_config("DATABASE_PASSWORD"),
-        'PORT': get_config("DATABASE_PORT"),
-        'ATOMIC_REQUESTS': True,
-    }
+    'default': get_config("DATABASE")
 }
 
 # CACHING

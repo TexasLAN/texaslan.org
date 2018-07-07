@@ -8,7 +8,6 @@ services:
       - db
     command: >
       bash -c "chmod +x startup.sh && ./startup.sh"
-
     volumes:
       - .:/app
     ports:
