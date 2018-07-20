@@ -6,7 +6,7 @@ fi
 whoami;
 python manage.py check;
 # wait for database to start up :(
-sleep 9;
+sleep 7;
 python manage.py migrate;
 python manage.py loaddata user_type_groups.json
 python manage.py loaddata tags.json
