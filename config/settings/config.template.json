@@ -11,11 +11,13 @@
   "SECURE_CONTENT_TYPE_NOSNIFF": true,
   "SECURE_SSL_REDIRECT": true,
 
-  "DATABASE_NAME": "NAME",
-  "DATABASE_USER": "USER",
-  "DATABASE_PASSWORD": "PASSWORD",
-  "DATABASE_PORT": "0000",
-
+  "DATABASE": {
+    "ENGINE": "django.db.backends.postgresql",
+    "NAME": "postgres",
+    "USER": "postgres",
+    "HOST": "db",
+    "PORT": 5432
+  },
   "SLACK_CLIENT_ID": "",
   "SLACK_CLIENT_SECRET": "",
 

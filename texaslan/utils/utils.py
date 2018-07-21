@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.views import redirect_to_login
 from django.core.exceptions import PermissionDenied
-
+from allauth.account.models import EmailAddress
 from config.settings.common import SENDGRID_API_KEY
 from texaslan.events.models import Event, EventTag
 from texaslan.voting.models import Candidate, VoteStatus
@@ -190,3 +190,20 @@ def unsubscribe_user_to_newsletter(email):
     # recipient_id = body_json['recipients'][0]['id']
     # sg.client.contactdb.lists._(SENDGRID_MAILING_LIST_ID).recipients._(recipient_id).delete()
     pass
+
+def jwt_response_payload_format(token, user=None, request=None):
+    return {
+        'jwt_token': token,
+        'user': {
+            'id': user.id,
+            'email': user.email,
+            'full_name': user.full_name,
+            'nick_name': user.nick_name,
+            'graduation_date': user.graduation_date,
+            'is_active': user.is_active,
+            'is_staff': user.is_staff,
+            'is_superuser': user.is_superuser,
+            'is_verified': EmailAddress.objects.filter(user=user, verified=True).exists()
+        }
+    }
+

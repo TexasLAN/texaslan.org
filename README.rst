@@ -21,54 +21,30 @@ Development
 Local Deployment
 ^^^^^^^^^^^^^^^^
 
-Get all the dependencies we'll need to run Django.
+Docker Compose will handle it for you.
 ::
-    brew install python3
-    git clone git@github.com:texaslan/texaslan.org.git
-    pip3 install -r requirements/local.txt
+    docker-compose up
 
-Install Postgres app(http://postgresapp.com/) and start Postgres.
+This will spin up a database container, apply migrations to the database, load test data, and run the application.
+
+Development operations
+^^^^^^^^^^^^^^^^^^^^^^
+
+Running operations on the Django application. Use this for importing fixtures, or any administrative tasks afforded by ``manage.py``.
 ::
-    # Create the Postgres DB
-    createdb texaslan
-    # Populate the DB with test data
-    python3 manage.py migrate
+    $ docker exec -it texaslan_web_1 bash
 
-We use Gulp_ for our build system. It automates the process of compiling styles and minifying static assets. To install it\:
+Running SQL operations on the Postgres instance, such as querying, updating, and deleting rows in the database.
 ::
-    brew install npm
-    npm install
-    npm install --global gulp-cli
-
-.. _Gulp: http://gulpjs.com
-
-In ``config/settings``, lename ``config.template.json`` to ``config.json``. The default values should be fine for local development.
-
-Several run configurations are available. Check ``gulpfile.js`` for more details.
-::
-    # Runs all build steps
-    gulp
-    # Runs the server
-    python3 manage.py runserver
-
-Use ``gulp watch`` to automatically recompile any assets you modify in the background while you work.
-
-Importing test data and users
-^^^^^^^^^^^^^^^^^^^^^
-
-Each app includes fixtures_. Load them with
-::
-    python manage.py loaddata <fixture-name>
-
-Required fixtures for the website to be properly running are the Event Tag fixtures, and the User Type Groups fixtures.
-
-.. _fixtures: https://docs.djangoproject.com/en/1.10/howto/initial-data/
+    $ docker exec -it texaslan_db_1 bash
+    $ su - postgres
+    $ psql
 
 All included test users have the password ``password``.
 
 Running Tests
 ^^^^^^^^^^^^^
-Just run
+Run
 ::
     py.test
 

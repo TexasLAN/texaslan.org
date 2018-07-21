@@ -12,7 +12,7 @@ from __future__ import absolute_import, unicode_literals
 
 import json
 import os
-
+import datetime
 import environ
 from django.core.exceptions import ImproperlyConfigured
 
@@ -58,6 +58,7 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount',  # registration
     'oauth2_provider',  # OAuth Provider
     'django_slack_oauth', # Slack
+    'rest_framework', # Django REST framework
 )
 
 # Apps specific for this project go here.
@@ -85,7 +86,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + CLEANUP_APP
 
 # MIDDLEWARE CONFIGURATION
 # ------------------------------------------------------------------------------
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -93,9 +94,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
-)
+    'texaslan.api.middleware.JWTAuthMiddleware',
+]
 
 # MIGRATIONS CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -136,7 +137,7 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-    'default': environ.Env().db('DATABASE_URL', default='postgres:///texaslan'),
+    'default': get_config("DATABASE")
 }
 
 DATABASES['default']['ATOMIC_REQUESTS'] = True
@@ -285,3 +286,10 @@ SLACK_PIPELINES = [
 
 # Photos
 PHOTOS_DRIVE_FOLDER_URL = get_config("PHOTOS_DRIVE_FOLDER_URL")
+
+# Django Rest JWT
+JWT_AUTH = {
+        'JWT_RESPONSE_PAYLOAD_HANDLER': 'texaslan.utils.utils.jwt_response_payload_format',
+        'JWT_ALLOW_REFRESH': True,
+        'JWT_EXPIRATION_DELTA': datetime.timedelta(days=90),
+}
