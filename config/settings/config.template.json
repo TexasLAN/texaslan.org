@@ -1,7 +1,7 @@
 {
   "DJANGO_KEY": "DJANGO_KEY_HERE",
 
-  "SENDGRID_API_KEY": "KEY",
+  "SENDGRID_API_KEY": "",
   "SENDGRID_MAILING_LIST_ID": 0,
 
   "ALLOWED_HOSTS": ["www.exampleurl.com"],
