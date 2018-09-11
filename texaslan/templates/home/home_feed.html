@@ -45,8 +45,9 @@
         {% else %}
             <div class="container text-center">
                 {% if not request.user.is_authenticated or request.user.is_rushie %}
+                    <br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/iuEQbPzIVio" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     <h3>Upcoming Events:</h3>
-                    <h4>Info Session #1 - Mon September 10th, 6-7 PM</h4>
                     <h4>Info Session #2 - Tue September 11th, 6-7 PM</h4>
                     <h4>Bowling Night - Tue September 11th, 7-9 PM</h4>
                     <h4>Coffee Night - Thurs September 13th, 6-8 PM</h4>
