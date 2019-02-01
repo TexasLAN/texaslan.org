@@ -28,9 +28,10 @@
                         <th>Avg Board Rating</th>
                         <th>Avg Rating</th>
                         <th># Reviews</th>
+                        <th>Events Attended</th>
                     </tr>
                     </thead>
-                    {% for application, reviewed, avg_rating, board_avg_rating, rating_count in application_list %}
+                    {% for application, reviewed, avg_rating, board_avg_rating, rating_count, events_attended in application_list %}
                         <tr>
                             <td>
                                 <a href="{% url 'applications:detail' application.id %}">{{ application.applicant_user.full_name }}</a>
@@ -41,6 +42,7 @@
                             <td>{{ board_avg_rating }}</td>
                             <td>{{ avg_rating }}</td>
                             <td>{{ rating_count }}</td>
+                            <td>{{ events_attended }}</td>
                         </tr>
                     {% endfor %}
                 </table>

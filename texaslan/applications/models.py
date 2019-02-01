@@ -22,6 +22,7 @@ class Application(models.Model):
     applicant_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name="applicant_user",
                                        verbose_name=_("Applicant"))
     is_submitted = models.BooleanField(_("Is Submitted"), default=False)
+    
 
     def __str__(self):
         return str(self.id)
