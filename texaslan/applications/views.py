@@ -42,12 +42,14 @@ class ApplicationListView(ActiveRequiredMixin, TemplateView):
         board_avg_rating_list = []
         anon_avg_rating_list = []
         rating_count_list = []
+        events_attended_list = []
         for application in application_list:
             reviews = Review.objects.filter(application__pk=application.pk)
             avg_rating_total = 0
             avg_rating_count = 0
             board_avg_rating_total = 0
             board_avg_rating_count = 0
+            events_attended_count = 0
             rating_count_list.append(len(reviews))
 
             for review in reviews:
@@ -56,7 +58,7 @@ class ApplicationListView(ActiveRequiredMixin, TemplateView):
 
                 avg_rating_count += 1
                 avg_rating_total += review.rating
-                
+
                 if review.reviewer_user.is_board():
                     board_avg_rating_count += 1
                     board_avg_rating_total += review.rating
@@ -70,14 +72,16 @@ class ApplicationListView(ActiveRequiredMixin, TemplateView):
                 board_avg_rating_list.append("{0:.2f}".format(board_avg_rating_total / board_avg_rating_count))
             else:
                 board_avg_rating_list.append("-")
-            
+
+            events_attended_list.append("0")
+
             try:
                 Review.objects.get(application__pk=application.pk, reviewer_user__pk=self.request.user.pk)
                 review_list.append(True)
             except Review.DoesNotExist:
                 review_list.append(False)
 
-        context['application_list'] = zip(application_list, review_list, avg_rating_list, board_avg_rating_list, rating_count_list)
+        context['application_list'] = zip(application_list, review_list, avg_rating_list, board_avg_rating_list, rating_count_list, events_attended_list)
         return context
 
 
@@ -98,11 +102,12 @@ class ApplicationDetailView(ActiveRequiredMixin, FormView):
         board_avg_rating_count = 0
         anon_avg_rating_total = 0
         anon_avg_rating_count = 0
+        events_attended_count = 0
 
         for review in reviews:
             if review.rating is None:
                 continue
-            
+
             if review.reviewer_user is None:
                 anon_avg_rating_count += 1
                 anon_avg_rating_total += review.rating
@@ -135,6 +140,8 @@ class ApplicationDetailView(ActiveRequiredMixin, FormView):
             context['anon_avg_rating'] = "{0:.2f}".format(anon_avg_rating_total / anon_avg_rating_count)
         else:
             context['anon_avg_rating'] = "-"
+
+        context['events_attended'] = events_attended_count
 
         context['reviews'] = reviews
         context['events'] = list(context['rushie'].event_attendees.all())

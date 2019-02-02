@@ -97,7 +97,7 @@ class User(AbstractUser):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default="P")
     lan_class = models.CharField(max_length=3, choices=LAN_CLASS, null=True, blank=True)
     active_semesters = models.ManyToManyField(ActiveSemester, blank=True)
-
+    events_attended = models.CharField(max_length=2, default="0")
     USERNAME_FIELD = 'username'
     REQUIRED_FIELD = 'email'
 
