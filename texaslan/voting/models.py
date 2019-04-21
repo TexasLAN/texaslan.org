@@ -16,7 +16,6 @@ CANDIDATE_POSITIONS = (
     ("N", "VP of New Member Services"),
     ("O", "VP of Social Affairs"),
     ("J", "VP of Standards"),
-    ("R", "Risk Management"),
     ("B", "Standards Board"),
 )
 
@@ -28,8 +27,7 @@ POSITION_NUMS = {
     "N": 1,
     "O": 1,
     "J": 1,
-    "R": 1,
-    "B": 4,
+    "B": 3,
 }
 
 
