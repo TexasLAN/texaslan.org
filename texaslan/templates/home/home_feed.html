@@ -47,11 +47,6 @@
                 {% if not request.user.is_authenticated or request.user.is_rushie %}
                     <br>
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/iuEQbPzIVio" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    <h3>Upcoming Events:</h3>
-                    <h4>Info Session #1 - Mon February 4th, 6 PM</h4>
-                    <h4>Info Session #2 - Tue February 5th, 6 PM</h4>
-                    <h4>Speed Dating - Tue February 5th, 7 PM</h4>
-                    <h4>Bowling Night - Wed February 6th, 7:15 PM</h4>
                 {% else %}
                     <div class="container" style="margin-top: 20px;">
                         {% if not linked_slack %}
