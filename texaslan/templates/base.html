@@ -62,11 +62,6 @@
             <div class="collapse navbar-collapse"
                  id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    {% if not request.user.is_authenticated %}
-                        <li class="{% block about_tab %}{% endblock %} nav-item">
-                            <a class="nav-link" href="{% url 'about' %}">About</a>
-                        </li>
-                    {% endif %}
                     {% if request.user.is_open_rushie %}
                         <li class="{% block applications_tab %}{% endblock %} nav-item">
                             <a class="nav-link" href="{% url 'applications:modify' %}">Application</a>

@@ -9,8 +9,8 @@ from django.views import defaults as default_views
 from django.views.generic import TemplateView
 
 urlpatterns = [
-                  url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
-                  url(r'^rush/$', TemplateView.as_view(template_name='pages/rush.html'), name='rush'),
+                #   url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+                #   url(r'^rush/$', TemplateView.as_view(template_name='pages/rush.html'), name='rush'),
                   # Django Admin, use {% url 'admin:index' %}
                   url(settings.ADMIN_URL, include(admin.site.urls)),
 
